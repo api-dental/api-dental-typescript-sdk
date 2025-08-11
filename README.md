@@ -26,7 +26,25 @@ const client = new APIDental({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
 });
 
-const response = await client.eligibility.check();
+const response = await client.eligibility.check({
+  dependent: {
+    first_name: 'John',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '06/24/1949',
+  },
+  payer: { id: '94276' },
+  provider: { npi: '1447364856', tax_id: '270872579' },
+  subscriber: {
+    first_name: 'Carlene',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '02/13/1953',
+  },
+  version: 'v2',
+});
 ```
 
 ### Request & Response types
@@ -41,7 +59,26 @@ const client = new APIDental({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
 });
 
-const response: unknown = await client.eligibility.check();
+const params: APIDental.EligibilityCheckParams = {
+  dependent: {
+    first_name: 'John',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '06/24/1949',
+  },
+  payer: { id: '94276' },
+  provider: { npi: '1447364856', tax_id: '270872579' },
+  subscriber: {
+    first_name: 'Carlene',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '02/13/1953',
+  },
+  version: 'v2',
+};
+const response: unknown = await client.eligibility.check(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -54,15 +91,35 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const response = await client.eligibility.check().catch(async (err) => {
-  if (err instanceof APIDental.APIError) {
-    console.log(err.status); // 400
-    console.log(err.name); // BadRequestError
-    console.log(err.headers); // {server: 'nginx', ...}
-  } else {
-    throw err;
-  }
-});
+const response = await client.eligibility
+  .check({
+    dependent: {
+      first_name: 'John',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '06/24/1949',
+    },
+    payer: { id: '94276' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+      first_name: 'Carlene',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '02/13/1953',
+    },
+    version: 'v2',
+  })
+  .catch(async (err) => {
+    if (err instanceof APIDental.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -94,7 +151,7 @@ const client = new APIDental({
 });
 
 // Or, configure per-request:
-await client.eligibility.check({
+await client.eligibility.check({ dependent: { first_name: 'John', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '06/24/1949' }, payer: { id: '94276' }, provider: { npi: '1447364856', tax_id: '270872579' }, subscriber: { first_name: 'Carlene', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '02/13/1953' }, version: 'v2' }, {
   maxRetries: 5,
 });
 ```
@@ -111,7 +168,7 @@ const client = new APIDental({
 });
 
 // Override per-request:
-await client.eligibility.check({
+await client.eligibility.check({ dependent: { first_name: 'John', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '06/24/1949' }, payer: { id: '94276' }, provider: { npi: '1447364856', tax_id: '270872579' }, subscriber: { first_name: 'Carlene', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '02/13/1953' }, version: 'v2' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -134,11 +191,51 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new APIDental();
 
-const response = await client.eligibility.check().asResponse();
+const response = await client.eligibility
+  .check({
+    dependent: {
+      first_name: 'John',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '06/24/1949',
+    },
+    payer: { id: '94276' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+      first_name: 'Carlene',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '02/13/1953',
+    },
+    version: 'v2',
+  })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: response, response: raw } = await client.eligibility.check().withResponse();
+const { data: response, response: raw } = await client.eligibility
+  .check({
+    dependent: {
+      first_name: 'John',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '06/24/1949',
+    },
+    payer: { id: '94276' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+      first_name: 'Carlene',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '02/13/1953',
+    },
+    version: 'v2',
+  })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(response);
 ```

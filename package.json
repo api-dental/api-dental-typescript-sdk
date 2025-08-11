@@ -1,6 +1,6 @@
 {
   "name": "api-dental",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The official TypeScript library for the API Dental API",
   "author": "API Dental <info@api.dental>",
   "types": "dist/index.d.ts",

@@ -642,11 +642,12 @@ export class APIDental {
     const headers = buildHeaders([
       idempotencyHeaders,
       {
-        Accept: 'application/json',
         'User-Agent': this.getUserAgent(),
         'X-Stainless-Retry-Count': String(retryCount),
         ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
         ...getPlatformHeaders(),
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       await this.authHeaders(options),
       this._options.defaultHeaders,

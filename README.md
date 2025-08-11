@@ -44,6 +44,11 @@ const response = await client.eligibility.check({
     dob: '02/13/1953',
   },
   version: 'v2',
+}, {
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
 });
 ```
 

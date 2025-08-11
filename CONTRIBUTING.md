@@ -42,15 +42,15 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ npm install git+ssh://git@github.com:stainless-sdks/api-dental-typescript.git
+$ npm install git+ssh://git@github.com:api-dental/api-dental-typescript-sdk.git
 ```
 
 Alternatively, to link a local copy of the repo:
 
 ```sh
 # Clone
-$ git clone https://www.github.com/stainless-sdks/api-dental-typescript
-$ cd api-dental-typescript
+$ git clone https://www.github.com/api-dental/api-dental-typescript-sdk
+$ cd api-dental-typescript-sdk
 
 # With yarn
 $ yarn link

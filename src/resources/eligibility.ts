@@ -2,7 +2,6 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
 export class Eligibility extends APIResource {
@@ -13,11 +12,7 @@ export class Eligibility extends APIResource {
    * ```
    */
   check(body: EligibilityCheckParams, options?: RequestOptions): APIPromise<unknown> {
-    return this._client.post('/Eligibility', {
-      body,
-      ...options,
-      headers: buildHeaders([{ 'Content-Type': 'application/x-www-form-urlencoded' }, options?.headers]),
-    });
+    return this._client.post('/Eligibility', { body, ...options });
   }
 }
 

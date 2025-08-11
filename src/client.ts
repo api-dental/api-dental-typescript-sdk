@@ -128,7 +128,7 @@ export class APIDental {
    * API Client for interfacing with the API Dental API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['API_DENTAL_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['API_DENTAL_BASE_URL'] ?? https://production.onederful.co] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['API_DENTAL_BASE_URL'] ?? https://graphql.api.dental/gql] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -150,7 +150,7 @@ export class APIDental {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://production.onederful.co`,
+      baseURL: baseURL || `https://graphql.api.dental/gql`,
     };
 
     this.baseURL = options.baseURL!;
@@ -196,7 +196,7 @@ export class APIDental {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://production.onederful.co';
+    return this.baseURL !== 'https://graphql.api.dental/gql';
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {

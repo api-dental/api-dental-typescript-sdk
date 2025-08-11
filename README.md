@@ -59,6 +59,13 @@ const client = new APIDental({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
 });
 
+const headers = {
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+};
+
 const params: APIDental.EligibilityCheckParams = {
   dependent: {
     first_name: 'John',
@@ -78,7 +85,7 @@ const params: APIDental.EligibilityCheckParams = {
   },
   version: 'v2',
 };
-const response: unknown = await client.eligibility.check(params);
+const response: unknown = await client.eligibility.check(params, headers);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.

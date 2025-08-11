@@ -120,25 +120,6 @@ On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
 
-## Default Headers
-
-We automatically send the following headers with all requests.
-
-| Header         | Value              |
-| -------------- | ------------------ |
-| `Content-Type` | `application/json` |
-| `Accept`       | `application/json` |
-
-If you need to, you can override these headers by setting default headers on a per-request basis.
-
-```ts
-import APIDental from 'api-dental';
-
-const client = new APIDental();
-
-const response = await client.eligibility.check({ headers: { 'Content-Type': 'My-Custom-Value' } });
-```
-
 ## Advanced Usage
 
 ### Accessing raw Response data (e.g., headers)

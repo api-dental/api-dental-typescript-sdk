@@ -6,7 +6,7 @@ Types:
 
 Methods:
 
-- <code title="post /eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">check</a>({ ...params }) -> unknown</code>
+- <code title="post /Eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">check</a>({ ...params }) -> unknown</code>
 
 # Payer
 
@@ -16,4 +16,4 @@ Types:
 
 Methods:
 
-- <code title="get /payer/list">client.payer.<a href="./src/resources/payer.ts">list</a>() -> PayerListResponse</code>
+- <code title="get /Payer">client.payer.<a href="./src/resources/payer.ts">list</a>() -> PayerListResponse</code>

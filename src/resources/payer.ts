@@ -10,7 +10,7 @@ export class Payer extends APIResource {
    * database. This list is kept up-to-date with any new payers.
    */
   list(options?: RequestOptions): APIPromise<PayerListResponse> {
-    return this._client.get('/payer/list', options);
+    return this._client.get('/Payer', options);
   }
 }
 

@@ -13,7 +13,7 @@ export class Eligibility extends APIResource {
    * ```
    */
   check(body: EligibilityCheckParams, options?: RequestOptions): APIPromise<unknown> {
-    return this._client.post('/eligibility', {
+    return this._client.post('/Eligibility', {
       body,
       ...options,
       headers: buildHeaders([{ 'Content-Type': 'application/x-www-form-urlencoded' }, options?.headers]),

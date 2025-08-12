@@ -19,7 +19,8 @@ cd api-dental-pro-typescript
 
 ```sh
 # set env vars as needed
-export API_DENTAL_PRO_API_KEY="My API Key"
+export API_DENTAL_API_KEY="My API Key"
+export API_DENTAL_PRO_API_KEY="My Bearer Token"
 node ./packages/mcp-server/dist/index.js
 ```
 
@@ -46,7 +47,8 @@ For clients with a configuration JSON, it might look something like this:
         "--tools=all"
       ],
       "env": {
-        "API_DENTAL_PRO_API_KEY": "My API Key"
+        "API_DENTAL_API_KEY": "My API Key",
+        "API_DENTAL_PRO_API_KEY": "My Bearer Token"
       }
     }
   }

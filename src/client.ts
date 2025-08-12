@@ -33,9 +33,14 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
+   * Defaults to process.env['API_DENTAL_API_KEY'].
+   */
+  apiKey?: string | undefined;
+
+  /**
    * Defaults to process.env['API_DENTAL_PRO_API_KEY'].
    */
-  apiKey?: string | null | undefined;
+  bearerToken?: string | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -110,7 +115,8 @@ export interface ClientOptions {
  * API Client for interfacing with the API Dental Pro API.
  */
 export class APIDentalPro {
-  apiKey: string | null;
+  apiKey: string;
+  bearerToken: string;
 
   baseURL: string;
   maxRetries: number;
@@ -127,7 +133,8 @@ export class APIDentalPro {
   /**
    * API Client for interfacing with the API Dental Pro API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['API_DENTAL_PRO_API_KEY'] ?? null]
+   * @param {string | undefined} [opts.apiKey=process.env['API_DENTAL_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.bearerToken=process.env['API_DENTAL_PRO_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['API_DENTAL_PRO_BASE_URL'] ?? https://wg.api.dental/rest] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -138,11 +145,24 @@ export class APIDentalPro {
    */
   constructor({
     baseURL = readEnv('API_DENTAL_PRO_BASE_URL'),
-    apiKey = readEnv('API_DENTAL_PRO_API_KEY') ?? null,
+    apiKey = readEnv('API_DENTAL_API_KEY'),
+    bearerToken = readEnv('API_DENTAL_PRO_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.APIDentalProError(
+        "The API_DENTAL_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDentalPro client with an apiKey option, like new APIDentalPro({ apiKey: 'My API Key' }).",
+      );
+    }
+    if (bearerToken === undefined) {
+      throw new Errors.APIDentalProError(
+        "The API_DENTAL_PRO_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDentalPro client with an bearerToken option, like new APIDentalPro({ bearerToken: 'My Bearer Token' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
+      bearerToken,
       ...opts,
       baseURL: baseURL || `https://wg.api.dental/rest`,
     };
@@ -165,6 +185,7 @@ export class APIDentalPro {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.bearerToken = bearerToken;
   }
 
   /**
@@ -181,6 +202,7 @@ export class APIDentalPro {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
+      bearerToken: this.bearerToken,
       ...options,
     });
     return client;
@@ -198,23 +220,19 @@ export class APIDentalPro {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.apiKey && values.get('authorization')) {
-      return;
-    }
-    if (nulls.has('authorization')) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
-    );
+    return;
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    if (this.apiKey == null) {
-      return undefined;
-    }
-    return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
+    return buildHeaders([await this.apiKeyAuth(opts), await this.bearerAuth(opts)]);
+  }
+
+  protected async apiKeyAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([{ 'X-Token-API': this.apiKey }]);
+  }
+
+  protected async bearerAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([{ Authorization: `Bearer ${this.bearerToken}` }]);
   }
 
   /**

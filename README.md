@@ -26,7 +26,8 @@ The full API of this library can be found in [api.md](api.md).
 import APIDentalPro from 'api-dental-pro';
 
 const client = new APIDentalPro({
-  apiKey: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
+  bearerToken: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
 });
 
 const response = await client.eligibility.request({
@@ -52,7 +53,8 @@ This library includes TypeScript definitions for all request params and response
 import APIDentalPro from 'api-dental-pro';
 
 const client = new APIDentalPro({
-  apiKey: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
+  bearerToken: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
 });
 
 const params: APIDentalPro.EligibilityRequestParams = {

@@ -4,6 +4,7 @@ import APIDentalPro from 'api-dental-pro';
 
 const client = new APIDentalPro({
   apiKey: 'My API Key',
+  bearerToken: 'My Bearer Token',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 

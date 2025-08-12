@@ -309,13 +309,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['API_DENTAL_PRO_BASE_URL'] = ''; // empty
       const client = new APIDentalPro({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://graphql.api.dental/gql');
+      expect(client.baseURL).toEqual('https://wg.api.dental/rest');
     });
 
     test('blank env variable', () => {
       process.env['API_DENTAL_PRO_BASE_URL'] = '  '; // blank
       const client = new APIDentalPro({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://graphql.api.dental/gql');
+      expect(client.baseURL).toEqual('https://wg.api.dental/rest');
     });
 
     test('in request options', () => {

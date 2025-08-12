@@ -38,7 +38,7 @@ export interface ClientOptions {
   apiKey?: string | undefined;
 
   /**
-   * Defaults to process.env['API_DENTAL_PRO_API_KEY'].
+   * Defaults to process.env['API_DENTAL_API_KEY'].
    */
   bearerToken?: string | undefined;
 
@@ -134,7 +134,7 @@ export class APIDentalPro {
    * API Client for interfacing with the API Dental Pro API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['API_DENTAL_API_KEY'] ?? undefined]
-   * @param {string | undefined} [opts.bearerToken=process.env['API_DENTAL_PRO_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.bearerToken=process.env['API_DENTAL_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['API_DENTAL_PRO_BASE_URL'] ?? https://wg.api.dental/rest] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -146,7 +146,7 @@ export class APIDentalPro {
   constructor({
     baseURL = readEnv('API_DENTAL_PRO_BASE_URL'),
     apiKey = readEnv('API_DENTAL_API_KEY'),
-    bearerToken = readEnv('API_DENTAL_PRO_API_KEY'),
+    bearerToken = readEnv('API_DENTAL_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -156,7 +156,7 @@ export class APIDentalPro {
     }
     if (bearerToken === undefined) {
       throw new Errors.APIDentalProError(
-        "The API_DENTAL_PRO_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDentalPro client with an bearerToken option, like new APIDentalPro({ bearerToken: 'My Bearer Token' }).",
+        "The API_DENTAL_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDentalPro client with an bearerToken option, like new APIDentalPro({ bearerToken: 'My Bearer Token' }).",
       );
     }
 

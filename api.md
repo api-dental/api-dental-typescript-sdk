@@ -2,11 +2,11 @@
 
 Types:
 
-- <code><a href="./src/resources/eligibility.ts">EligibilityCheckResponse</a></code>
+- <code><a href="./src/resources/eligibility.ts">EligibilityRequestResponse</a></code>
 
 Methods:
 
-- <code title="post /Eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">check</a>({ ...params }) -> unknown</code>
+- <code title="post /Eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">request</a>({ ...params }) -> unknown</code>
 
 # Payer
 

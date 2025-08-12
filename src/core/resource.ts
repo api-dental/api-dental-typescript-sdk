@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { APIDental } from '../client';
+import type { APIDentalPro } from '../client';
 
 export abstract class APIResource {
-  protected _client: APIDental;
+  protected _client: APIDentalPro;
 
-  constructor(client: APIDental) {
+  constructor(client: APIDentalPro) {
     this._client = client;
   }
 }

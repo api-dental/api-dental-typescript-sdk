@@ -1,12 +1,12 @@
 {
-  "name": "api-dental",
-  "version": "0.3.0",
-  "description": "The official TypeScript library for the API Dental API",
-  "author": "API Dental <info@api.dental>",
+  "name": "api-dental-pro",
+  "version": "0.0.1",
+  "description": "The official TypeScript library for the API Dental Pro API",
+  "author": "API Dental Pro <support@api.dental>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
-  "repository": "github:api-dental/api-dental-typescript-sdk",
+  "repository": "github:stainless-sdks/api-dental-pro-typescript",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [

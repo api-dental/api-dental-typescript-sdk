@@ -55,12 +55,12 @@ $ cd api-dental-typescript-sdk
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link api-dental-pro
+$ yarn link api-dental
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global api-dental-pro
+$ pnpm link -—global api-dental
 ```
 
 ## Running tests

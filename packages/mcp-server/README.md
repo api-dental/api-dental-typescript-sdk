@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/api-dental-pro-typescript.git
-cd api-dental-pro-typescript
+git clone git@github.com:api-dental/api-dental-typescript-sdk.git
+cd api-dental-typescript-sdk
 ./scripts/bootstrap
 ./scripts/build
 ```
@@ -42,7 +42,7 @@ For clients with a configuration JSON, it might look something like this:
     "api_dental_pro_api": {
       "command": "node",
       "args": [
-        "/path/to/local/api-dental-pro-typescript/packages/mcp-server",
+        "/path/to/local/api-dental-typescript-sdk/packages/mcp-server",
         "--client=claude",
         "--tools=all"
       ],

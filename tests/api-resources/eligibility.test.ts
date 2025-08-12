@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import APIDentalPro from 'api-dental-pro';
+import APIDentalPro from 'api-dental';
 
 const client = new APIDentalPro({
   apiKey: 'My API Key',

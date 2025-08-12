@@ -4,8 +4,8 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { Endpoint, endpoints, HandlerFunction, query } from './tools';
 import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'api-dental-pro';
-import APIDentalPro from 'api-dental-pro';
+import { ClientOptions } from 'api-dental';
+import APIDentalPro from 'api-dental';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -19,13 +19,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from 'api-dental-pro';
+export { ClientOptions } from 'api-dental';
 export { endpoints } from './tools';
 
 export const newMcpServer = () =>
   new McpServer(
     {
-      name: 'api_dental_pro_api',
+      name: 'api_dental_api',
       version: '0.1.0',
     },
     { capabilities: { tools: {}, logging: {} } },

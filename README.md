@@ -24,7 +24,7 @@ import APIDentalPro from 'api-dental';
 
 const client = new APIDentalPro({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
-  bearerToken: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
+  bearerToken: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
 });
 
 const response = await client.eligibility.request({
@@ -51,7 +51,7 @@ import APIDentalPro from 'api-dental';
 
 const client = new APIDentalPro({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
-  bearerToken: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
+  bearerToken: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
 });
 
 const params: APIDentalPro.EligibilityRequestParams = {

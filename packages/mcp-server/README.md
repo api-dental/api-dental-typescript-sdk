@@ -24,7 +24,7 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "api_dental_pro_api": {
+    "api_dental_api": {
       "command": "npx",
       "args": ["-y", "api-dental-pro-mcp", "--client=claude", "--tools=all"],
       "env": {

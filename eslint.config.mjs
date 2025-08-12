@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^api-dental-pro(/.*)?',
+              regex: '^api-dental(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

@@ -3,7 +3,7 @@
 import { Metadata, asTextContentResult } from 'api-dental-pro-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import APIDentalPro from 'api-dental-pro';
+import APIDentalPro from 'api-dental';
 
 export const metadata: Metadata = {
   resource: 'eligibility',

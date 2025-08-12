@@ -4,7 +4,7 @@ const parentPkgJson = require('../../../package.json');
 
 for (const dep in pkgJson.dependencies) {
   // ensure we point to NPM instead of a local directory
-  if (dep === 'api-dental-pro') {
+  if (dep === 'api-dental') {
     pkgJson.dependencies[dep] = '^' + parentPkgJson.version;
   }
 }

@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'api-dental/internal/uploads';
-import { toFile } from 'api-dental/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'api-dental-pro/internal/uploads';
+import { toFile } from 'api-dental-pro/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

@@ -1,0 +1,4 @@
+configured_endpoints: 2
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/velocitys3%2Fapi-dental-pro-13271ad822731364c14102a0df75e6d708d0ca8173758e6e0cf78adea6680e9c.yml
+openapi_spec_hash: 428f412d0f52194d392601ccfc1a095c
+config_hash: e6f99710fa25641d85954399d2c3765e

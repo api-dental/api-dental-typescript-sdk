@@ -481,7 +481,7 @@ describe('instantiate client', () => {
   test('with environment variable arguments', () => {
     // set options via env var
     process.env['API_DENTAL_API_KEY'] = 'My API Key';
-    process.env['API_DENTAL_PRO_API_KEY'] = 'My Bearer Token';
+    process.env['API_DENTAL_API_KEY'] = 'My Bearer Token';
     const client = new APIDentalPro();
     expect(client.apiKey).toBe('My API Key');
     expect(client.bearerToken).toBe('My Bearer Token');
@@ -490,7 +490,7 @@ describe('instantiate client', () => {
   test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['API_DENTAL_API_KEY'] = 'another My API Key';
-    process.env['API_DENTAL_PRO_API_KEY'] = 'another My Bearer Token';
+    process.env['API_DENTAL_API_KEY'] = 'another My Bearer Token';
     const client = new APIDentalPro({ apiKey: 'My API Key', bearerToken: 'My Bearer Token' });
     expect(client.apiKey).toBe('My API Key');
     expect(client.bearerToken).toBe('My Bearer Token');

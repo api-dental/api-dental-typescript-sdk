@@ -26,7 +26,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'api_dental_api',
-      version: '0.1.0',
+      version: '1.0.0',
     },
     { capabilities: { tools: {}, logging: {} } },
   );

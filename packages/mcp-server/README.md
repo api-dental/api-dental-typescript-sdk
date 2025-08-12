@@ -10,7 +10,7 @@ You can run the MCP Server directly via `npx`:
 
 ```sh
 export API_DENTAL_API_KEY="My API Key"
-export API_DENTAL_API_KEY="My Bearer Token"
+export API_DENTAL_PRO_API_KEY="My Bearer Token"
 npx -y api-dental-pro-mcp@latest
 ```
 
@@ -29,7 +29,7 @@ For clients with a configuration JSON, it might look something like this:
       "args": ["-y", "api-dental-pro-mcp", "--client=claude", "--tools=all"],
       "env": {
         "API_DENTAL_API_KEY": "My API Key",
-        "API_DENTAL_API_KEY": "My Bearer Token"
+        "API_DENTAL_PRO_API_KEY": "My Bearer Token"
       }
     }
   }

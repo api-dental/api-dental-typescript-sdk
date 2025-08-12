@@ -19,8 +19,8 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
   const apiKey =
     req.headers['x-token-api'] instanceof Array ? req.headers['x-token-api'][0] : req.headers['x-token-api'];
   const bearerToken =
-    req.headers['x-api-dental-api-key'] instanceof Array ?
-      req.headers['x-api-dental-api-key'][0]
-    : req.headers['x-api-dental-api-key'];
+    req.headers['x-api-dental-pro-api-key'] instanceof Array ?
+      req.headers['x-api-dental-pro-api-key'][0]
+    : req.headers['x-api-dental-pro-api-key'];
   return { apiKey, bearerToken };
 };

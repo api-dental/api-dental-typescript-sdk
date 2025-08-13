@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.0 (2025-08-13)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** update via SDK Studio ([da4ffd5](https://github.com/api-dental/api-dental-typescript-sdk/commit/da4ffd521f962f5cb461be98280586ed5e8f13f0))
+* **api:** update via SDK Studio ([2617114](https://github.com/api-dental/api-dental-typescript-sdk/commit/2617114819dcb346bc1eb329a08543bae66fd327))
+
+
+### Chores
+
+* sync repo ([061510f](https://github.com/api-dental/api-dental-typescript-sdk/commit/061510fbf5ae306117765b86085e76196f18f067))
+* sync repo ([4891ce5](https://github.com/api-dental/api-dental-typescript-sdk/commit/4891ce52306707f5203cbcce746b61c3baa35c87))
+
 ## 0.3.0 (2025-08-11)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v0.2.0...v0.3.0)

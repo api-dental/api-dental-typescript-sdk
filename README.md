@@ -1,10 +1,10 @@
-# API Dental Pro TypeScript API Library
+# API Dental TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/api-dental.svg?label=npm%20(stable)>)](https://npmjs.org/package/api-dental) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/api-dental)
 
-This library provides convenient access to the API Dental Pro REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the API Dental REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [api.dental](https://api.dental/docs). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -20,24 +20,30 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 
-const client = new APIDentalPro({
+const client = new APIDental({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
-  bearerToken: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
 });
 
-const response = await client.eligibility.request({
-  payer: { id: 'id' },
-  provider: { npi: 'npi', tax_id: 'tax_id' },
-  subscriber: {
-    dob: '2019-12-27',
-    first_name: 'first_name',
-    group_number: 'group_number',
-    last_name: 'last_name',
-    member_id: 'member_id',
+const response = await client.eligibility.check({
+  dependent: {
+    first_name: 'John',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '06/24/1949',
   },
-  version: 'REPLACE_ME',
+  payer: { id: '94276' },
+  provider: { npi: '1447364856', tax_id: '270872579' },
+  subscriber: {
+    first_name: 'Carlene',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '02/13/1953',
+  },
+  version: 'v2',
 });
 ```
 
@@ -47,26 +53,32 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 
-const client = new APIDentalPro({
+const client = new APIDental({
   apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted
-  bearerToken: process.env['API_DENTAL_PRO_API_KEY'], // This is the default and can be omitted
 });
 
-const params: APIDentalPro.EligibilityRequestParams = {
-  payer: { id: 'id' },
-  provider: { npi: 'npi', tax_id: 'tax_id' },
-  subscriber: {
-    dob: '2019-12-27',
-    first_name: 'first_name',
-    group_number: 'group_number',
-    last_name: 'last_name',
-    member_id: 'member_id',
+const params: APIDental.EligibilityCheckParams = {
+  dependent: {
+    first_name: 'John',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '06/24/1949',
   },
-  version: 'REPLACE_ME',
+  payer: { id: '94276' },
+  provider: { npi: '1447364856', tax_id: '270872579' },
+  subscriber: {
+    first_name: 'Carlene',
+    last_name: 'Ross',
+    member_id: '118882775601',
+    group_number: '20010-10003',
+    dob: '02/13/1953',
+  },
+  version: 'v2',
 };
-const response: unknown = await client.eligibility.request(params);
+const response: unknown = await client.eligibility.check(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -80,20 +92,27 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 const response = await client.eligibility
-  .request({
-    payer: { id: 'id' },
-    provider: { npi: 'npi', tax_id: 'tax_id' },
-    subscriber: {
-      dob: '2019-12-27',
-      first_name: 'first_name',
-      group_number: 'group_number',
-      last_name: 'last_name',
-      member_id: 'member_id',
+  .check({
+    dependent: {
+      first_name: 'John',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '06/24/1949',
     },
-    version: 'REPLACE_ME',
+    payer: { id: '94276' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+      first_name: 'Carlene',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '02/13/1953',
+    },
+    version: 'v2',
   })
   .catch(async (err) => {
-    if (err instanceof APIDentalPro.APIError) {
+    if (err instanceof APIDental.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -127,12 +146,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new APIDentalPro({
+const client = new APIDental({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await client.eligibility.request({ payer: { id: 'id' }, provider: { npi: 'npi', tax_id: 'tax_id' }, subscriber: { dob: '2019-12-27', first_name: 'first_name', group_number: 'group_number', last_name: 'last_name', member_id: 'member_id' }, version: 'REPLACE_ME' }, {
+await client.eligibility.check({ dependent: { first_name: 'John', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '06/24/1949' }, payer: { id: '94276' }, provider: { npi: '1447364856', tax_id: '270872579' }, subscriber: { first_name: 'Carlene', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '02/13/1953' }, version: 'v2' }, {
   maxRetries: 5,
 });
 ```
@@ -144,12 +163,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new APIDentalPro({
+const client = new APIDental({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await client.eligibility.request({ payer: { id: 'id' }, provider: { npi: 'npi', tax_id: 'tax_id' }, subscriber: { dob: '2019-12-27', first_name: 'first_name', group_number: 'group_number', last_name: 'last_name', member_id: 'member_id' }, version: 'REPLACE_ME' }, {
+await client.eligibility.check({ dependent: { first_name: 'John', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '06/24/1949' }, payer: { id: '94276' }, provider: { npi: '1447364856', tax_id: '270872579' }, subscriber: { first_name: 'Carlene', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '02/13/1953' }, version: 'v2' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -170,37 +189,51 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new APIDentalPro();
+const client = new APIDental();
 
 const response = await client.eligibility
-  .request({
-    payer: { id: 'id' },
-    provider: { npi: 'npi', tax_id: 'tax_id' },
-    subscriber: {
-      dob: '2019-12-27',
-      first_name: 'first_name',
-      group_number: 'group_number',
-      last_name: 'last_name',
-      member_id: 'member_id',
+  .check({
+    dependent: {
+      first_name: 'John',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '06/24/1949',
     },
-    version: 'REPLACE_ME',
+    payer: { id: '94276' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+      first_name: 'Carlene',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '02/13/1953',
+    },
+    version: 'v2',
   })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: response, response: raw } = await client.eligibility
-  .request({
-    payer: { id: 'id' },
-    provider: { npi: 'npi', tax_id: 'tax_id' },
-    subscriber: {
-      dob: '2019-12-27',
-      first_name: 'first_name',
-      group_number: 'group_number',
-      last_name: 'last_name',
-      member_id: 'member_id',
+  .check({
+    dependent: {
+      first_name: 'John',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '06/24/1949',
     },
-    version: 'REPLACE_ME',
+    payer: { id: '94276' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+      first_name: 'Carlene',
+      last_name: 'Ross',
+      member_id: '118882775601',
+      group_number: '20010-10003',
+      dob: '02/13/1953',
+    },
+    version: 'v2',
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -217,13 +250,13 @@ console.log(response);
 
 The log level can be configured in two ways:
 
-1. Via the `API_DENTAL_PRO_LOG` environment variable
+1. Via the `API_DENTAL_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 
-const client = new APIDentalPro({
+const client = new APIDental({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -249,13 +282,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new APIDentalPro({
-  logger: logger.child({ name: 'APIDentalPro' }),
+const client = new APIDental({
+  logger: logger.child({ name: 'APIDental' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -284,7 +317,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.eligibility.request({
+client.eligibility.check({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
@@ -318,10 +351,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 import fetch from 'my-fetch';
 
-const client = new APIDentalPro({ fetch });
+const client = new APIDental({ fetch });
 ```
 
 ### Fetch options
@@ -329,9 +362,9 @@ const client = new APIDentalPro({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 
-const client = new APIDentalPro({
+const client = new APIDental({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -346,11 +379,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new APIDentalPro({
+const client = new APIDental({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -360,9 +393,9 @@ const client = new APIDentalPro({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 
-const client = new APIDentalPro({
+const client = new APIDental({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -372,10 +405,10 @@ const client = new APIDentalPro({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import APIDentalPro from 'npm:api-dental';
+import APIDental from 'npm:api-dental';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new APIDentalPro({
+const client = new APIDental({
   fetchOptions: {
     client: httpClient,
   },

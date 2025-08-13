@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIDentalPro } from 'api-dental';
+import { APIDental } from 'api-dental';
 
-const { stringifyQuery } = APIDentalPro.prototype as any;
+const { stringifyQuery } = APIDental.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [

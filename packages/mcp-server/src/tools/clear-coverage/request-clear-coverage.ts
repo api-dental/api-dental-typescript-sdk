@@ -6,17 +6,17 @@ import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import APIDentalPro from 'api-dental';
 
 export const metadata: Metadata = {
-  resource: 'eligibility',
+  resource: 'clearCoverage',
   operation: 'write',
   tags: [],
   httpMethod: 'post',
-  httpPath: '/Eligibility',
-  operationId: 'checkEligibility',
+  httpPath: '/ClearCoverage',
+  operationId: 'checkClearCoverage',
 };
 
 export const tool: Tool = {
-  name: 'request_eligibility',
-  description: 'Request Eligibility',
+  name: 'request_clear_coverage',
+  description: 'Clear Coverage',
   inputSchema: {
     type: 'object',
     properties: {
@@ -96,7 +96,7 @@ export const tool: Tool = {
 
 export const handler = async (client: APIDentalPro, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult((await client.eligibility.request(body)) as object);
+  return asTextContentResult((await client.clearCoverage.request(body)) as object);
 };
 
 export default { metadata, tool, handler };

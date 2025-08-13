@@ -171,6 +171,10 @@ The following tools are available in this MCP server.
 
 - `request_eligibility` (`write`): Request Eligibility
 
+### Resource `clearCoverage`:
+
+- `request_clear_coverage` (`write`): Clear Coverage
+
 ### Resource `payer`:
 
 - `list_payer` (`read`): List Payers

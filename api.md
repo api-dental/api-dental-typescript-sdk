@@ -8,6 +8,16 @@ Methods:
 
 - <code title="post /Eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">request</a>({ ...params }) -> unknown</code>
 
+# ClearCoverage
+
+Types:
+
+- <code><a href="./src/resources/clear-coverage.ts">ClearCoverageRequestResponse</a></code>
+
+Methods:
+
+- <code title="post /ClearCoverage">client.clearCoverage.<a href="./src/resources/clear-coverage.ts">request</a>({ ...params }) -> unknown</code>
+
 # Payer
 
 Types:

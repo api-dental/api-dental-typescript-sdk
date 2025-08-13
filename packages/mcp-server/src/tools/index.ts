@@ -5,6 +5,7 @@ import { Metadata, Endpoint, HandlerFunction } from './types';
 export { Metadata, Endpoint, HandlerFunction };
 
 import request_eligibility from './eligibility/request-eligibility';
+import request_clear_coverage from './clear-coverage/request-clear-coverage';
 import list_payer from './payer/list-payer';
 
 export const endpoints: Endpoint[] = [];
@@ -14,6 +15,7 @@ function addEndpoint(endpoint: Endpoint) {
 }
 
 addEndpoint(request_eligibility);
+addEndpoint(request_clear_coverage);
 addEndpoint(list_payer);
 
 export type Filter = {

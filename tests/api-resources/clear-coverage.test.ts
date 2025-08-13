@@ -8,10 +8,10 @@ const client = new APIDentalPro({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource eligibility', () => {
+describe('resource clearCoverage', () => {
   // Prism tests are disabled
   test.skip('request: only required params', async () => {
-    const responsePromise = client.eligibility.request({
+    const responsePromise = client.clearCoverage.request({
       payer: { id: 'id' },
       provider: { npi: 'npi', tax_id: 'tax_id' },
       subscriber: {
@@ -34,7 +34,7 @@ describe('resource eligibility', () => {
 
   // Prism tests are disabled
   test.skip('request: required and optional params', async () => {
-    const response = await client.eligibility.request({
+    const response = await client.clearCoverage.request({
       payer: { id: 'id' },
       provider: { npi: 'npi', tax_id: 'tax_id' },
       subscriber: {

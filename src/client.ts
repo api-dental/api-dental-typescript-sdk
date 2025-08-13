@@ -16,6 +16,11 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import {
+  ClearCoverage,
+  ClearCoverageRequestParams,
+  ClearCoverageRequestResponse,
+} from './resources/clear-coverage';
 import { Eligibility, EligibilityRequestParams, EligibilityRequestResponse } from './resources/eligibility';
 import { Payer, PayerListResponse } from './resources/payer';
 import { type Fetch } from './internal/builtin-types';
@@ -740,9 +745,11 @@ export class APIDentalPro {
   static toFile = Uploads.toFile;
 
   eligibility: API.Eligibility = new API.Eligibility(this);
+  clearCoverage: API.ClearCoverage = new API.ClearCoverage(this);
   payer: API.Payer = new API.Payer(this);
 }
 APIDentalPro.Eligibility = Eligibility;
+APIDentalPro.ClearCoverage = ClearCoverage;
 APIDentalPro.Payer = Payer;
 export declare namespace APIDentalPro {
   export type RequestOptions = Opts.RequestOptions;
@@ -751,6 +758,12 @@ export declare namespace APIDentalPro {
     Eligibility as Eligibility,
     type EligibilityRequestResponse as EligibilityRequestResponse,
     type EligibilityRequestParams as EligibilityRequestParams,
+  };
+
+  export {
+    ClearCoverage as ClearCoverage,
+    type ClearCoverageRequestResponse as ClearCoverageRequestResponse,
+    type ClearCoverageRequestParams as ClearCoverageRequestParams,
   };
 
   export { Payer as Payer, type PayerListResponse as PayerListResponse };

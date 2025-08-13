@@ -23,6 +23,8 @@ export interface EligibilityRequestParams {
   subscriber: EligibilityRequestParams.Subscriber;
 
   version: string;
+
+  dependent?: EligibilityRequestParams.Dependent;
 }
 
 export namespace EligibilityRequestParams {
@@ -37,6 +39,18 @@ export namespace EligibilityRequestParams {
   }
 
   export interface Subscriber {
+    dob: string;
+
+    first_name: string;
+
+    group_number: string;
+
+    last_name: string;
+
+    member_id: string;
+  }
+
+  export interface Dependent {
     dob: string;
 
     first_name: string;

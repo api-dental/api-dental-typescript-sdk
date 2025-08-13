@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import APIDentalPro from 'api-dental';
+import APIDental from 'api-dental';
 
-const client = new APIDentalPro({
+const client = new APIDental({
   apiKey: 'My API Key',
-  bearerToken: 'My Bearer Token',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 

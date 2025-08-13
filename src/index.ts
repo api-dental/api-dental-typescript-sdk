@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { APIDental as default } from './client';
+export { APIDentalPro as default } from './client';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
-export { APIDental, type ClientOptions } from './client';
+export { APIDentalPro, type ClientOptions } from './client';
 export {
-  APIDentalError,
+  APIDentalProError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,

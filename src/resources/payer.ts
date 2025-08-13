@@ -6,8 +6,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Payer extends APIResource {
   /**
-   * This endpoint returns the list of Onederful payers to be saved in your own
-   * database. This list is kept up-to-date with any new payers.
+   * List Payers
    */
   list(options?: RequestOptions): APIPromise<PayerListResponse> {
     return this._client.get('/Payer', options);
@@ -18,13 +17,13 @@ export type PayerListResponse = Array<PayerListResponse.PayerListResponseItem>;
 
 export namespace PayerListResponse {
   export interface PayerListResponseItem {
-    id: string;
-
-    name: string;
+    id?: string;
 
     alt_payer_ids?: Array<string>;
 
     features?: Array<string>;
+
+    name?: string;
 
     onederfulPayerId?: string;
 

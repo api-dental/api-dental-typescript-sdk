@@ -6,69 +6,66 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Eligibility extends APIResource {
   /**
-   * @example
-   * ```ts
-   * const response = await client.eligibility.check();
-   * ```
+   * Request Eligibility
    */
-  check(body: EligibilityCheckParams, options?: RequestOptions): APIPromise<unknown> {
+  request(body: EligibilityRequestParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/Eligibility', { body, ...options });
   }
 }
 
-export type EligibilityCheckResponse = unknown;
+export type EligibilityRequestResponse = unknown;
 
-export interface EligibilityCheckParams {
-  dependent?: EligibilityCheckParams.Dependent;
+export interface EligibilityRequestParams {
+  payer: EligibilityRequestParams.Payer;
 
-  payer?: EligibilityCheckParams.Payer;
+  provider: EligibilityRequestParams.Provider;
 
-  provider?: EligibilityCheckParams.Provider;
+  subscriber: EligibilityRequestParams.Subscriber;
 
-  subscriber?: EligibilityCheckParams.Subscriber;
+  version: string;
 
-  version?: string;
+  dependent?: EligibilityRequestParams.Dependent;
 }
 
-export namespace EligibilityCheckParams {
-  export interface Dependent {
-    dob?: string;
-
-    first_name?: string;
-
-    group_number?: string;
-
-    last_name?: string;
-
-    member_id?: string;
-  }
-
+export namespace EligibilityRequestParams {
   export interface Payer {
-    id?: string;
+    id: string;
   }
 
   export interface Provider {
-    npi?: string;
+    npi: string;
 
-    tax_id?: string;
+    tax_id: string;
   }
 
   export interface Subscriber {
-    dob?: string;
+    dob: string;
 
-    first_name?: string;
+    first_name: string;
 
-    group_number?: string;
+    group_number: string;
 
-    last_name?: string;
+    last_name: string;
 
-    member_id?: string;
+    member_id: string;
+  }
+
+  export interface Dependent {
+    dob: string;
+
+    first_name: string;
+
+    group_number: string;
+
+    last_name: string;
+
+    member_id: string;
   }
 }
 
 export declare namespace Eligibility {
   export {
-    type EligibilityCheckResponse as EligibilityCheckResponse,
-    type EligibilityCheckParams as EligibilityCheckParams,
+    type EligibilityRequestResponse as EligibilityRequestResponse,
+    type EligibilityRequestParams as EligibilityRequestParams,
   };
 }

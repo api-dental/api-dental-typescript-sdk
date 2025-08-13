@@ -16,7 +16,12 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Eligibility, EligibilityCheckParams, EligibilityCheckResponse } from './resources/eligibility';
+import {
+  ClearCoverage,
+  ClearCoverageRequestParams,
+  ClearCoverageRequestResponse,
+} from './resources/clear-coverage';
+import { Eligibility, EligibilityRequestParams, EligibilityRequestResponse } from './resources/eligibility';
 import { Payer, PayerListResponse } from './resources/payer';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -38,9 +43,14 @@ export interface ClientOptions {
   apiKey?: string | undefined;
 
   /**
+   * Defaults to process.env['API_DENTAL_PRO_API_KEY'].
+   */
+  bearerToken?: string | undefined;
+
+  /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['API_DENTAL_BASE_URL'].
+   * Defaults to process.env['API_DENTAL_PRO_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -94,7 +104,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['API_DENTAL_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['API_DENTAL_PRO_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -107,10 +117,11 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the API Dental API.
+ * API Client for interfacing with the API Dental Pro API.
  */
-export class APIDental {
+export class APIDentalPro {
   apiKey: string;
+  bearerToken: string;
 
   baseURL: string;
   maxRetries: number;
@@ -125,10 +136,11 @@ export class APIDental {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the API Dental API.
+   * API Client for interfacing with the API Dental Pro API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['API_DENTAL_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['API_DENTAL_BASE_URL'] ?? https://wg.api.dental/rest] - Override the default base URL for the API.
+   * @param {string | undefined} [opts.bearerToken=process.env['API_DENTAL_PRO_API_KEY'] ?? undefined]
+   * @param {string} [opts.baseURL=process.env['API_DENTAL_PRO_BASE_URL'] ?? https://wg.api.dental/rest] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -137,31 +149,38 @@ export class APIDental {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('API_DENTAL_BASE_URL'),
+    baseURL = readEnv('API_DENTAL_PRO_BASE_URL'),
     apiKey = readEnv('API_DENTAL_API_KEY'),
+    bearerToken = readEnv('API_DENTAL_PRO_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.APIDentalError(
-        "The API_DENTAL_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDental client with an apiKey option, like new APIDental({ apiKey: 'My API Key' }).",
+      throw new Errors.APIDentalProError(
+        "The API_DENTAL_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDentalPro client with an apiKey option, like new APIDentalPro({ apiKey: 'My API Key' }).",
+      );
+    }
+    if (bearerToken === undefined) {
+      throw new Errors.APIDentalProError(
+        "The API_DENTAL_PRO_API_KEY environment variable is missing or empty; either provide it, or instantiate the APIDentalPro client with an bearerToken option, like new APIDentalPro({ bearerToken: 'My Bearer Token' }).",
       );
     }
 
     const options: ClientOptions = {
       apiKey,
+      bearerToken,
       ...opts,
       baseURL: baseURL || `https://wg.api.dental/rest`,
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? APIDental.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? APIDentalPro.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('API_DENTAL_LOG'), "process.env['API_DENTAL_LOG']", this) ??
+      parseLogLevel(readEnv('API_DENTAL_PRO_LOG'), "process.env['API_DENTAL_PRO_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -171,6 +190,7 @@ export class APIDental {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.bearerToken = bearerToken;
   }
 
   /**
@@ -187,6 +207,7 @@ export class APIDental {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
+      bearerToken: this.bearerToken,
       ...options,
     });
     return client;
@@ -208,7 +229,15 @@ export class APIDental {
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([await this.apiKeyAuth(opts), await this.bearerAuth(opts)]);
+  }
+
+  protected async apiKeyAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
     return buildHeaders([{ 'X-Token-API': this.apiKey }]);
+  }
+
+  protected async bearerAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([{ Authorization: `Bearer ${this.bearerToken}` }]);
   }
 
   /**
@@ -224,7 +253,7 @@ export class APIDental {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new Errors.APIDentalError(
+        throw new Errors.APIDentalProError(
           `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
         );
       })
@@ -696,10 +725,10 @@ export class APIDental {
     }
   }
 
-  static APIDental = this;
+  static APIDentalPro = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static APIDentalError = Errors.APIDentalError;
+  static APIDentalProError = Errors.APIDentalProError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -716,17 +745,25 @@ export class APIDental {
   static toFile = Uploads.toFile;
 
   eligibility: API.Eligibility = new API.Eligibility(this);
+  clearCoverage: API.ClearCoverage = new API.ClearCoverage(this);
   payer: API.Payer = new API.Payer(this);
 }
-APIDental.Eligibility = Eligibility;
-APIDental.Payer = Payer;
-export declare namespace APIDental {
+APIDentalPro.Eligibility = Eligibility;
+APIDentalPro.ClearCoverage = ClearCoverage;
+APIDentalPro.Payer = Payer;
+export declare namespace APIDentalPro {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
     Eligibility as Eligibility,
-    type EligibilityCheckResponse as EligibilityCheckResponse,
-    type EligibilityCheckParams as EligibilityCheckParams,
+    type EligibilityRequestResponse as EligibilityRequestResponse,
+    type EligibilityRequestParams as EligibilityRequestParams,
+  };
+
+  export {
+    ClearCoverage as ClearCoverage,
+    type ClearCoverageRequestResponse as ClearCoverageRequestResponse,
+    type ClearCoverageRequestParams as ClearCoverageRequestParams,
   };
 
   export { Payer as Payer, type PayerListResponse as PayerListResponse };

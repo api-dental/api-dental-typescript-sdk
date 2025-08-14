@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "api-dental-pro-mcp/*": ["src/*"],
-      "api-dental-pro-mcp": ["src/index.ts"]
+      "api-dental-mcp/*": ["src/*"],
+      "api-dental-mcp": ["src/index.ts"]
     },
     "noEmit": true,
 

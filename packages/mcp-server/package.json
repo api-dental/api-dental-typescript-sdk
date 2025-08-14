@@ -1,5 +1,5 @@
 {
-  "name": "api-dental-pro-mcp",
+  "name": "api-dental-mcp",
   "version": "1.2.0",
   "description": "The official MCP Server for the API Dental Pro API",
   "author": "API Dental Pro <support@api.dental>",
@@ -58,8 +58,8 @@
     "typescript": "5.8.3"
   },
   "imports": {
-    "api-dental-pro-mcp": ".",
-    "api-dental-pro-mcp/*": "./src/*"
+    "api-dental-mcp": ".",
+    "api-dental-mcp/*": "./src/*"
   },
   "exports": {
     ".": {

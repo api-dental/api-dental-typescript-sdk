@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^api-dental-pro-mcp$': '<rootDir>/src/index.ts',
-    '^api-dental-pro-mcp/(.*)$': '<rootDir>/src/$1',
+    '^api-dental-mcp$': '<rootDir>/src/index.ts',
+    '^api-dental-mcp/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],

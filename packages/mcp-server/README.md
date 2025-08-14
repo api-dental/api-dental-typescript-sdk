@@ -10,7 +10,7 @@ You can run the MCP Server directly via `npx`:
 
 ```sh
 export API_DENTAL_API_KEY="My API Key"
-npx -y api-dental-pro-mcp@latest
+npx -y api-dental-mcp@latest
 ```
 
 ### Via MCP Client
@@ -25,7 +25,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "api_dental_api": {
       "command": "npx",
-      "args": ["-y", "api-dental-pro-mcp", "--client=claude", "--tools=all"],
+      "args": ["-y", "api-dental-mcp", "--client=claude", "--tools=all"],
       "env": {
         "API_DENTAL_API_KEY": "My API Key"
       }
@@ -130,10 +130,10 @@ over time, you can manually enable or disable certain capabilities:
 
 ```js
 // Import the server, generated endpoints, or the init function
-import { server, endpoints, init } from "api-dental-pro-mcp/server";
+import { server, endpoints, init } from "api-dental-mcp/server";
 
 // import a specific tool
-import requestEligibility from "api-dental-pro-mcp/tools/eligibility/request-eligibility";
+import requestEligibility from "api-dental-mcp/tools/eligibility/request-eligibility";
 
 // initialize the server and all endpoints
 init({ server, endpoints });

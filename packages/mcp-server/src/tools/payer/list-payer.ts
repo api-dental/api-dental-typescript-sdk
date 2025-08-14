@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'api-dental-pro-mcp/filtering';
-import { Metadata, asTextContentResult } from 'api-dental-pro-mcp/tools/types';
+import { maybeFilter } from 'api-dental-mcp/filtering';
+import { Metadata, asTextContentResult } from 'api-dental-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import APIDentalPro from 'api-dental';

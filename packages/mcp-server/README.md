@@ -135,15 +135,15 @@ Authorization can be provided via the following headers:
 | ------------- | ------------------------ | --------------- |
 | `X-Token-API` | `apiKey` | apiKeyAuth |
 
-A configuration JSON for this server might look like this:
+A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:
 
 ```json
 {
   "mcpServers": {
     "api_dental_api": {
-      "url": "http://localhost:3000", # or wherever the server is hosted
+      "url": "http://localhost:3000",
       "headers": {
-        'X-Token-API': 'My API Key'
+        "X-Token-API": "My API Key"
       }
     }
   }

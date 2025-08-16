@@ -724,9 +724,11 @@ export class APIDentalPro {
   clearCoverage: API.ClearCoverage = new API.ClearCoverage(this);
   payer: API.Payer = new API.Payer(this);
 }
+
 APIDentalPro.Eligibility = Eligibility;
 APIDentalPro.ClearCoverage = ClearCoverage;
 APIDentalPro.Payer = Payer;
+
 export declare namespace APIDentalPro {
   export type RequestOptions = Opts.RequestOptions;
 

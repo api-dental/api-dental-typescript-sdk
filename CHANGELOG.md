@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.3.0 (2025-08-21)
+
+Full Changelog: [v1.2.1...v1.3.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.2.1...v1.3.0)
+
+### Features
+
+* **api:** update via SDK Studio ([885e676](https://github.com/api-dental/api-dental-typescript-sdk/commit/885e676207078c2cc03302e0bdf7dcf3e65af8b2))
+* **api:** update via SDK Studio ([4d10fc7](https://github.com/api-dental/api-dental-typescript-sdk/commit/4d10fc7fff3d58052eb7f356e20a7071a9d4cdf2))
+* **api:** update via SDK Studio ([bb37fa3](https://github.com/api-dental/api-dental-typescript-sdk/commit/bb37fa38abbc3d22f7015ad471e194181f21528d))
+* **api:** update via SDK Studio ([adfadf7](https://github.com/api-dental/api-dental-typescript-sdk/commit/adfadf795e5190464d66a53d50580c885c7fcb1e))
+* **mcp:** add code execution tool ([b8a6402](https://github.com/api-dental/api-dental-typescript-sdk/commit/b8a640280ff856ad887151f3c9f767f6762ae1e4))
+* **mcp:** add option to infer mcp client ([906bb95](https://github.com/api-dental/api-dental-typescript-sdk/commit/906bb95135ec0f43b06b8347301d282560780491))
+* **mcp:** parse query string as mcp client options in mcp server ([817d60d](https://github.com/api-dental/api-dental-typescript-sdk/commit/817d60d98b53aa7265838398e061a63a3ca43f94))
+
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([7896f61](https://github.com/api-dental/api-dental-typescript-sdk/commit/7896f61452f1982cc30596629c1c4be8b118dd67))
+* **internal:** formatting change ([5a64e19](https://github.com/api-dental/api-dental-typescript-sdk/commit/5a64e197f0b2e13d966da4f3f91ba666fa555b2f))
+* **internal:** make mcp-server publishing public by defaut ([cde3669](https://github.com/api-dental/api-dental-typescript-sdk/commit/cde3669331263c7f16d32900cc4349f4b950035c))
+* **internal:** refactor array check ([91b0cf0](https://github.com/api-dental/api-dental-typescript-sdk/commit/91b0cf083547d2db3f5c782f754a8787dd34b39d))
+* **mcp:** add cors to oauth metadata route ([5c1adaf](https://github.com/api-dental/api-dental-typescript-sdk/commit/5c1adaf47275f6f0c5fcc3bb3a2eab0635c88511))
+* **mcp:** document remote server in README.md ([492bdc6](https://github.com/api-dental/api-dental-typescript-sdk/commit/492bdc697c51f8eec79f10f9f0f229484fa0b3ad))
+* **mcp:** update README ([508f2d4](https://github.com/api-dental/api-dental-typescript-sdk/commit/508f2d4f2a1e98109377670cd1e962d0145b1785))
+
 ## 1.2.1 (2025-08-14)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.2.0...v1.2.1)

@@ -10,6 +10,8 @@ You can run the MCP Server directly via `npx`:
 
 ```sh
 export API_DENTAL_API_KEY="My API Key"
+export API_DENTAL_PRO_SDK_SOURCE="My SDK Source"
+export API_DENTAL_PRO_SDK_LANG="My SDK Lang"
 npx -y api-dental-mcp@latest
 ```
 
@@ -27,7 +29,9 @@ For clients with a configuration JSON, it might look something like this:
       "command": "npx",
       "args": ["-y", "api-dental-mcp", "--client=claude", "--tools=all"],
       "env": {
-        "API_DENTAL_API_KEY": "My API Key"
+        "API_DENTAL_API_KEY": "My API Key",
+        "API_DENTAL_PRO_SDK_SOURCE": "My SDK Source",
+        "API_DENTAL_PRO_SDK_LANG": "My SDK Lang"
       }
     }
   }

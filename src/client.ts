@@ -42,6 +42,10 @@ export interface ClientOptions {
    */
   apiKey?: string | undefined;
 
+  sdkSource?: string | null | undefined;
+
+  sdkLang?: string | null | undefined;
+
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
@@ -116,6 +120,8 @@ export interface ClientOptions {
  */
 export class APIDentalPro {
   apiKey: string;
+  sdkSource: string | null;
+  sdkLang: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -133,6 +139,8 @@ export class APIDentalPro {
    * API Client for interfacing with the API Dental Pro API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['API_DENTAL_API_KEY'] ?? undefined]
+   * @param {string | null | undefined} [opts.sdkSource=api-dental-sdk]
+   * @param {string | null | undefined} [opts.sdkLang]
    * @param {string} [opts.baseURL=process.env['API_DENTAL_PRO_BASE_URL'] ?? https://wg.api.dental/rest] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -144,6 +152,8 @@ export class APIDentalPro {
   constructor({
     baseURL = readEnv('API_DENTAL_PRO_BASE_URL'),
     apiKey = readEnv('API_DENTAL_API_KEY'),
+    sdkSource = 'api-dental-sdk',
+    sdkLang = null,
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -154,6 +164,8 @@ export class APIDentalPro {
 
     const options: ClientOptions = {
       apiKey,
+      sdkSource,
+      sdkLang,
       ...opts,
       baseURL: baseURL || `https://wg.api.dental/rest`,
     };
@@ -176,6 +188,8 @@ export class APIDentalPro {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.sdkSource = sdkSource;
+    this.sdkLang = sdkLang;
   }
 
   /**
@@ -192,6 +206,8 @@ export class APIDentalPro {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
+      sdkSource: this.sdkSource,
+      sdkLang: this.sdkLang,
       ...options,
     });
     return client;
@@ -652,6 +668,8 @@ export class APIDentalPro {
         'X-Stainless-Retry-Count': String(retryCount),
         ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
         ...getPlatformHeaders(),
+        'X-API-Dental-Client': this.sdkSource,
+        'X-API-Dental-Lang': this.sdkLang,
       },
       await this.authHeaders(options),
       this._options.defaultHeaders,

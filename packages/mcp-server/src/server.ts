@@ -86,6 +86,7 @@ export function initMcpServer(params: {
   };
 
   const client = new APIDentalPro({
+    ...{ sdkSource: readEnv('API_DENTAL_PRO_SDK_SOURCE'), sdkLang: readEnv('API_DENTAL_PRO_SDK_LANG') },
     logger,
     ...params.clientOptions,
     defaultHeaders: {

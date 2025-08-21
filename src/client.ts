@@ -186,6 +186,7 @@ export class APIDentalPro {
     this.#encoder = Opts.FallbackEncoder;
 
     this._options = options;
+    this.idempotencyHeader = 'X-Idempotency-Key';
 
     this.apiKey = apiKey;
     this.sdkSource = sdkSource;

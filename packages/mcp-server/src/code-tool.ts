@@ -59,6 +59,8 @@ export function codeTool(): Endpoint {
         const opts: ClientOptions = {
           baseURL: client.baseURL,
           apiKey: client.apiKey,
+          sdkSource: client.sdkSource,
+          sdkLang: client.sdkLang,
           defaultHeaders: {
             'X-Stainless-MCP': 'true',
           },

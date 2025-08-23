@@ -27,22 +27,22 @@ const client = new APIDentalPro({
 });
 
 const response = await client.eligibility.request({
-  payer: { id: '94276' },
-  provider: { npi: '1447364856', tax_id: '270872579' },
+  payer: { id: '12345' },
+  provider: { npi: '1234567890', tax_id: '123456789' },
   subscriber: {
-    first_name: 'Carlene',
-    last_name: 'Ross',
-    member_id: '118882775601',
-    group_number: '20010-10003',
-    dob: '1953-02-13',
+    dob: '2019-12-27',
+    first_name: 'Jane',
+    group_number: '22000-00000',
+    last_name: 'Doe',
+    member_id: '118885555000',
   },
   version: 'v2',
   dependent: {
+    dob: '2019-12-27',
     first_name: 'John',
-    last_name: 'Ross',
-    member_id: '118882775601',
-    group_number: '20010-10003',
-    dob: '1949-06-24',
+    group_number: '20000-10001',
+    last_name: 'Doe',
+    member_id: '118885555001',
   },
 });
 ```
@@ -60,14 +60,14 @@ const client = new APIDentalPro({
 });
 
 const params: APIDentalPro.EligibilityRequestParams = {
-  payer: { id: '94276' },
-  provider: { npi: '1447364856', tax_id: '270872579' },
+  payer: { id: '12345' },
+  provider: { npi: '1234567890', tax_id: '123456789' },
   subscriber: {
-    first_name: 'Carlene',
-    last_name: 'Ross',
-    member_id: '118882775601',
-    group_number: '20010-10003',
-    dob: '1953-02-13',
+    dob: '2019-12-27',
+    first_name: 'Jane',
+    group_number: '20000-10000',
+    last_name: 'Doe',
+    member_id: '118885555000',
   },
   version: 'v2',
 };
@@ -86,14 +86,14 @@ a subclass of `APIError` will be thrown:
 ```ts
 const response = await client.eligibility
   .request({
-    payer: { id: '94276' },
-    provider: { npi: '1447364856', tax_id: '270872579' },
+    payer: { id: '12345' },
+    provider: { npi: '1234567890', tax_id: '123456789' },
     subscriber: {
-      first_name: 'Carlene',
-      last_name: 'Ross',
-      member_id: '118882775601',
-      group_number: '20010-10003',
-      dob: '1953-02-13',
+      dob: '2019-12-27',
+      first_name: 'Jane',
+      group_number: '20000-10000',
+      last_name: 'Doe',
+      member_id: '118885555000',
     },
     version: 'v2',
   })
@@ -137,7 +137,7 @@ const client = new APIDentalPro({
 });
 
 // Or, configure per-request:
-await client.eligibility.request({ payer: { id: '94276' }, provider: { npi: '1447364856', tax_id: '270872579' }, subscriber: { first_name: 'Carlene', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '1953-02-13' }, version: 'v2' }, {
+await client.eligibility.request({ payer: { id: '12345' }, provider: { npi: '1234567890', tax_id: '123456789' }, subscriber: { dob: '2019-12-27', first_name: 'Jane', group_number: '20000-10000', last_name: 'Doe', member_id: '118885555000' }, version: 'v2' }, {
   maxRetries: 5,
 });
 ```
@@ -154,7 +154,7 @@ const client = new APIDentalPro({
 });
 
 // Override per-request:
-await client.eligibility.request({ payer: { id: '94276' }, provider: { npi: '1447364856', tax_id: '270872579' }, subscriber: { first_name: 'Carlene', last_name: 'Ross', member_id: '118882775601', group_number: '20010-10003', dob: '1953-02-13' }, version: 'v2' }, {
+await client.eligibility.request({ payer: { id: '12345' }, provider: { npi: '1234567890', tax_id: '123456789' }, subscriber: { dob: '2019-12-27', first_name: 'Jane', group_number: '20000-10000', last_name: 'Doe', member_id: '118885555000' }, version: 'v2' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -179,14 +179,14 @@ const client = new APIDentalPro();
 
 const response = await client.eligibility
   .request({
-    payer: { id: '94276' },
-    provider: { npi: '1447364856', tax_id: '270872579' },
+    payer: { id: '12345' },
+    provider: { npi: '1234567890', tax_id: '123456789' },
     subscriber: {
-      first_name: 'Carlene',
-      last_name: 'Ross',
-      member_id: '118882775601',
-      group_number: '20010-10003',
-      dob: '1953-02-13',
+      dob: '2019-12-27',
+      first_name: 'Jane',
+      group_number: '20000-10000',
+      last_name: 'Doe',
+      member_id: '118885555000',
     },
     version: 'v2',
   })
@@ -196,14 +196,14 @@ console.log(response.statusText); // access the underlying Response object
 
 const { data: response, response: raw } = await client.eligibility
   .request({
-    payer: { id: '94276' },
-    provider: { npi: '1447364856', tax_id: '270872579' },
+    payer: { id: '12345' },
+    provider: { npi: '1234567890', tax_id: '123456789' },
     subscriber: {
-      first_name: 'Carlene',
-      last_name: 'Ross',
-      member_id: '118882775601',
-      group_number: '20010-10003',
-      dob: '1953-02-13',
+      dob: '2019-12-27',
+      first_name: 'Jane',
+      group_number: '20000-10000',
+      last_name: 'Doe',
+      member_id: '118885555000',
     },
     version: 'v2',
   })

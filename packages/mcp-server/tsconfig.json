@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "api-dental-mcp/*": ["src/*"],
-      "api-dental-mcp": ["src/index.ts"]
+      "api-dental-mcp/*": ["./src/*"],
+      "api-dental-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 

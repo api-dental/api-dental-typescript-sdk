@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "api-dental/*": ["src/*"],
-      "api-dental": ["src/index.ts"]
+      "api-dental/*": ["./src/*"],
+      "api-dental": ["./src/index.ts"]
     },
     "noEmit": true,
 

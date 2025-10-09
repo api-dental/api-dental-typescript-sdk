@@ -1,5 +1,63 @@
 # Changelog
 
+## 1.4.0 (2025-10-09)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **api:** update via SDK Studio ([369d8fc](https://github.com/api-dental/api-dental-typescript-sdk/commit/369d8fcf25fb88074063b84d961a61cef95087fa))
+* **mcp:** add docs search tool ([06803f9](https://github.com/api-dental/api-dental-typescript-sdk/commit/06803f9da6de373e97774b51525ea7cf16b7e185))
+* **mcp:** add option for including docs tools ([ad122ce](https://github.com/api-dental/api-dental-typescript-sdk/commit/ad122cee597a699b5bc1e1bdbeb2d8e555ebe4de))
+* **mcp:** allow setting logging level ([5d6ebfc](https://github.com/api-dental/api-dental-typescript-sdk/commit/5d6ebfc9ca61ddae14d723704123678f9436a1dd))
+* **mcp:** enable experimental docs search tool ([10453c8](https://github.com/api-dental/api-dental-typescript-sdk/commit/10453c8c8af1c6c17e76047e7a300cbf6f12435c))
+* **mcp:** expose client options in `streamableHTTPApp` ([127f398](https://github.com/api-dental/api-dental-typescript-sdk/commit/127f39835670465b9d40888853b0c7038e94cba1))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([5a2bc11](https://github.com/api-dental/api-dental-typescript-sdk/commit/5a2bc11a80869dd4bdc4a8c3ac6decfe3b3d7dda))
+* **mcp:** fix cli argument parsing logic ([d938fa7](https://github.com/api-dental/api-dental-typescript-sdk/commit/d938fa7ed5efc581c241dac648b084e28e43be3a))
+* **mcp:** fix query options parsing ([ada5fcc](https://github.com/api-dental/api-dental-typescript-sdk/commit/ada5fccb3e754ab86298b11855b2b0cf55827059))
+* **mcp:** fix uploading dxt release assets ([381cff4](https://github.com/api-dental/api-dental-typescript-sdk/commit/381cff4928a1957834f70a7d17f2ebeaf0ea027c))
+* **mcp:** resolve a linting issue in server code ([091d00c](https://github.com/api-dental/api-dental-typescript-sdk/commit/091d00cd28b0567552e2ac7b0efee5fa59c3f76c))
+
+
+### Performance Improvements
+
+* faster formatting ([a8c1de6](https://github.com/api-dental/api-dental-typescript-sdk/commit/a8c1de654e499423e023816f77015ac258de92bd))
+
+
+### Chores
+
+* add package to package.json ([725e27e](https://github.com/api-dental/api-dental-typescript-sdk/commit/725e27eadb4efb22724cdd51fc5f0679475005fa))
+* **client:** qualify global Blob ([15c7600](https://github.com/api-dental/api-dental-typescript-sdk/commit/15c7600c68ae4131db851a361371370090c0f741))
+* **codegen:** internal codegen update ([ef0c1ba](https://github.com/api-dental/api-dental-typescript-sdk/commit/ef0c1ba6e703274afd32ee2ffd87ce24dd22a7f9))
+* do not install brew dependencies in ./scripts/bootstrap by default ([cb8d6fc](https://github.com/api-dental/api-dental-typescript-sdk/commit/cb8d6fc3e25c098c521ca019dfe8622cffef4acc))
+* extract some types in mcp docs ([78116c0](https://github.com/api-dental/api-dental-typescript-sdk/commit/78116c0ed4f0f373b8d83516c1f279911a03df70))
+* **internal:** codegen related update ([1fe4685](https://github.com/api-dental/api-dental-typescript-sdk/commit/1fe4685db8b552e512245cf6aa7177f05912b9f3))
+* **internal:** codegen related update ([2a7f32b](https://github.com/api-dental/api-dental-typescript-sdk/commit/2a7f32b59d6a7169718103dad12c9b7df4e6ddc4))
+* **internal:** codegen related update ([b14bd71](https://github.com/api-dental/api-dental-typescript-sdk/commit/b14bd71c8725d33de58d42d2bba39861c090d190))
+* **internal:** codegen related update ([4a60858](https://github.com/api-dental/api-dental-typescript-sdk/commit/4a60858787d3ab0da19272a986c3f2baf9723a0a))
+* **internal:** codegen related update ([50fc779](https://github.com/api-dental/api-dental-typescript-sdk/commit/50fc779638f674d9ceb1ae75ae2b6702ae44f9c6))
+* **internal:** codegen related update ([6f7c3af](https://github.com/api-dental/api-dental-typescript-sdk/commit/6f7c3af54778f38b8e3bc1fd08e8484fea0965fe))
+* **internal:** codegen related update ([2e3628d](https://github.com/api-dental/api-dental-typescript-sdk/commit/2e3628d136053cc3c7a37ba5d1faebd3ea9e8736))
+* **internal:** fix incremental formatting in some cases ([1c3d715](https://github.com/api-dental/api-dental-typescript-sdk/commit/1c3d7159ed5ac7683671d52c95a60e2214ebe814))
+* **internal:** gitignore .mcpb files ([a6ba07a](https://github.com/api-dental/api-dental-typescript-sdk/commit/a6ba07afd7cc61da71681ed4632a97ccb4dee987))
+* **internal:** ignore .eslintcache ([f66bb0b](https://github.com/api-dental/api-dental-typescript-sdk/commit/f66bb0b11cd4f1faba64d46e0ba12b7d971b49e5))
+* **internal:** remove .eslintcache ([f4fa340](https://github.com/api-dental/api-dental-typescript-sdk/commit/f4fa3401942b63716cf2f39354313da5fecd2346))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([274e81e](https://github.com/api-dental/api-dental-typescript-sdk/commit/274e81e23add6e8331e92ee93795ebe0b55c26c5))
+* **internal:** update global Error reference ([bdaf273](https://github.com/api-dental/api-dental-typescript-sdk/commit/bdaf273ed096a798804a41a8735c9b6036f27e19))
+* **internal:** use npm pack for build uploads ([42613fe](https://github.com/api-dental/api-dental-typescript-sdk/commit/42613fe5beb676310d5b5b39046273465ff7d1f5))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([6e171d5](https://github.com/api-dental/api-dental-typescript-sdk/commit/6e171d52fcf97d0dc8533c6f349a6ce5febec806))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([599add5](https://github.com/api-dental/api-dental-typescript-sdk/commit/599add57530dc0163e5ed67a5fc2f643d3732416))
+* **mcp:** rename dxt to mcpb ([cae4a28](https://github.com/api-dental/api-dental-typescript-sdk/commit/cae4a28eb484159abbd6d98aa9d7a5acf290a15e))
+* **mcp:** update package.json ([dcd6396](https://github.com/api-dental/api-dental-typescript-sdk/commit/dcd6396e439fd543be8396988bb8cb00f5dd6692))
+* **mcp:** update types ([cd967f5](https://github.com/api-dental/api-dental-typescript-sdk/commit/cd967f5ccc0821401a7314b16dc13921418d0bea))
+* **mcp:** upload dxt as release asset ([53e45e9](https://github.com/api-dental/api-dental-typescript-sdk/commit/53e45e9e0a64cc5dd3fefac47ddbf86f79e89d62))
+* update CI script ([65ec5fd](https://github.com/api-dental/api-dental-typescript-sdk/commit/65ec5fddf2069af62e7ee51d99bf824f89ea6b48))
+* update lockfile ([00d7046](https://github.com/api-dental/api-dental-typescript-sdk/commit/00d7046e6878e2dcedf5c66d50aeb2dad403384a))
+
 ## 1.3.0 (2025-08-21)
 
 Full Changelog: [v1.2.1...v1.3.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.2.1...v1.3.0)

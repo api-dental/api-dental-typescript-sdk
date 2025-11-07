@@ -45,6 +45,22 @@ in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > Ne
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=api-dental-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFwaS1kZW50YWwtbWNwIl0sImVudiI6eyJBUElfREVOVEFMX0FQSV9LRVkiOiJTZXQgeW91ciBBUElfREVOVEFMX0FQSV9LRVkgaGVyZS4iLCJBUElfREVOVEFMX1BST19TREtfU09VUkNFIjoiU2V0IHlvdXIgQVBJX0RFTlRBTF9QUk9fU0RLX1NPVVJDRSBoZXJlLiIsIkFQSV9ERU5UQUxfUFJPX1NES19MQU5HIjoiU2V0IHlvdXIgQVBJX0RFTlRBTF9QUk9fU0RLX0xBTkcgaGVyZS4ifX0)
 
+### VS Code
+
+If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
+in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
+
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22api-dental-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22api-dental-mcp%22%5D%2C%22env%22%3A%7B%22API_DENTAL_API_KEY%22%3A%22Set%20your%20API_DENTAL_API_KEY%20here.%22%2C%22API_DENTAL_PRO_SDK_SOURCE%22%3A%22Set%20your%20API_DENTAL_PRO_SDK_SOURCE%20here.%22%2C%22API_DENTAL_PRO_SDK_LANG%22%3A%22Set%20your%20API_DENTAL_PRO_SDK_LANG%20here.%22%7D%7D)
+
+### Claude Code
+
+If you use Claude Code, you can install the MCP server by running the command below in your terminal. You will need to set your
+environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
+
+```
+claude mcp add --transport stdio api_dental_api --env API_DENTAL_API_KEY="Your API_DENTAL_API_KEY here." API_DENTAL_PRO_SDK_SOURCE="Your API_DENTAL_PRO_SDK_SOURCE here." API_DENTAL_PRO_SDK_LANG="Your API_DENTAL_PRO_SDK_LANG here." -- npx -y api-dental-mcp
+```
+
 ## Exposing endpoints to your MCP Client
 
 There are three ways to expose endpoints as tools in the MCP server:

@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'api-dental-mcp/filtering';
-import { Metadata, asTextContentResult } from 'api-dental-mcp/tools/types';
+import { isJqError, maybeFilter } from 'api-dental-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from 'api-dental-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import APIDentalPro from 'api-dental';
@@ -38,7 +38,14 @@ export const tool: Tool = {
 
 export const handler = async (client: APIDentalPro, args: Record<string, unknown> | undefined) => {
   const { jq_filter } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.payer.list()));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.payer.list()));
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };

@@ -43,6 +43,10 @@ export async function codeTool() {
       },
       body: JSON.stringify({
         project_name: 'api-dental-pro',
+        client_opts: {
+          sdkSource: readEnv('API_DENTAL_PRO_SDK_SOURCE'),
+          sdkLang: readEnv('API_DENTAL_PRO_SDK_LANG'),
+        },
         code,
       }),
     });

@@ -87,7 +87,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new APIDentalPro({ logger: logger, logLevel: 'debug', apiKey: 'My API Key' });
+      const client = new APIDentalPro({
+        logger: logger,
+        logLevel: 'debug',
+        apiKey: 'My API Key',
+      });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).toHaveBeenCalled();
@@ -107,7 +111,11 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new APIDentalPro({ logger: logger, logLevel: 'info', apiKey: 'My API Key' });
+      const client = new APIDentalPro({
+        logger: logger,
+        logLevel: 'info',
+        apiKey: 'My API Key',
+      });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -157,7 +165,11 @@ describe('instantiate client', () => {
       };
 
       process.env['API_DENTAL_PRO_LOG'] = 'debug';
-      const client = new APIDentalPro({ logger: logger, logLevel: 'off', apiKey: 'My API Key' });
+      const client = new APIDentalPro({
+        logger: logger,
+        logLevel: 'off',
+        apiKey: 'My API Key',
+      });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -173,7 +185,11 @@ describe('instantiate client', () => {
       };
 
       process.env['API_DENTAL_PRO_LOG'] = 'not a log level';
-      const client = new APIDentalPro({ logger: logger, logLevel: 'debug', apiKey: 'My API Key' });
+      const client = new APIDentalPro({
+        logger: logger,
+        logLevel: 'debug',
+        apiKey: 'My API Key',
+      });
       expect(client.logLevel).toBe('debug');
       expect(warnMock).not.toHaveBeenCalled();
     });
@@ -442,23 +458,23 @@ describe('instantiate client', () => {
 });
 
 describe('idempotency', () => {
-  test('key can be set per-request', async () => {
+  test.skip('key can be set per-request', async () => {
     const client = new APIDentalPro({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       apiKey: 'My API Key',
     });
     await client.eligibility.request(
       {
-        payer: { id: 'id' },
-        provider: { npi: 'npi', tax_id: 'tax_id' },
+        payer: { id: '52133' },
+        provider: { npi: '1447364856', tax_id: '270872579' },
         subscriber: {
-          dob: '2019-12-27',
-          first_name: 'first_name',
-          group_number: 'group_number',
-          last_name: 'last_name',
-          member_id: 'member_id',
+          dob: '01/15/1990',
+          first_name: 'John',
+          group_number: 'GRP001',
+          last_name: 'Smith',
+          member_id: '123456789',
         },
-        version: 'version',
+        version: 'v2',
       },
       { idempotencyKey: 'my-idempotency-key' },
     );
@@ -570,7 +586,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new APIDentalPro({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
+    const client = new APIDentalPro({
+      apiKey: 'My API Key',
+      timeout: 10,
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -600,7 +620,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new APIDentalPro({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new APIDentalPro({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -624,7 +648,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new APIDentalPro({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new APIDentalPro({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await client.request({
@@ -686,7 +714,11 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new APIDentalPro({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new APIDentalPro({
+      apiKey: 'My API Key',
+      fetch: testFetch,
+      maxRetries: 4,
+    });
 
     expect(
       await client.request({

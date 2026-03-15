@@ -6,28 +6,56 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Payer extends APIResource {
   /**
-   * List Payers
+   * Retrieve the full list of supported dental insurance payers with their IDs,
+   * names, features, and status. No sensitive data is required. Use payer IDs from
+   * this list when making Eligibility or ClearCoverage requests.
    */
   list(options?: RequestOptions): APIPromise<PayerListResponse> {
     return this._client.get('/Payer', options);
   }
 }
 
-export type PayerListResponse = Array<PayerListResponse.PayerListResponseItem>;
+export interface PayerListResponse {
+  data?: PayerListResponse.Data;
+}
 
 export namespace PayerListResponse {
-  export interface PayerListResponseItem {
-    id?: string;
+  export interface Data {
+    apidental_payer_list?: Array<Data.ApidentalPayerList>;
+  }
 
-    alt_payer_ids?: Array<string>;
+  export namespace Data {
+    export interface ApidentalPayerList {
+      /**
+       * Unique payer identifier
+       */
+      id?: string;
 
-    features?: Array<string>;
+      /**
+       * Alternate payer identifiers
+       */
+      alt_payer_ids?: Array<string>;
 
-    name?: string;
+      /**
+       * Supported features (e.g., eligibility, claims)
+       */
+      features?: Array<string>;
 
-    onederfulPayerId?: string;
+      /**
+       * Payer display name
+       */
+      name?: string;
 
-    status?: string;
+      /**
+       * Internal payer mapping ID
+       */
+      onederfulPayerId?: string;
+
+      /**
+       * Payer availability status
+       */
+      status?: 'active' | 'inactive';
+    }
   }
 }
 

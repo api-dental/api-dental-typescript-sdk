@@ -8,19 +8,19 @@ const client = new APIDentalPro({
 });
 
 describe('resource eligibility', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('request: only required params', async () => {
     const responsePromise = client.eligibility.request({
-      payer: { id: 'id' },
-      provider: { npi: 'npi', tax_id: 'tax_id' },
+      payer: { id: '52133' },
+      provider: { npi: '1447364856', tax_id: '270872579' },
       subscriber: {
-        dob: '2019-12-27',
-        first_name: 'first_name',
-        group_number: 'group_number',
-        last_name: 'last_name',
-        member_id: 'member_id',
+        dob: '01/15/1990',
+        first_name: 'John',
+        group_number: 'GRP001',
+        last_name: 'Smith',
+        member_id: '123456789',
       },
-      version: 'version',
+      version: 'v2',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -31,21 +31,21 @@ describe('resource eligibility', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('request: required and optional params', async () => {
     const response = await client.eligibility.request({
-      payer: { id: 'id' },
-      provider: { npi: 'npi', tax_id: 'tax_id' },
+      payer: { id: '52133' },
+      provider: { npi: '1447364856', tax_id: '270872579' },
       subscriber: {
-        dob: '2019-12-27',
-        first_name: 'first_name',
-        group_number: 'group_number',
-        last_name: 'last_name',
-        member_id: 'member_id',
+        dob: '01/15/1990',
+        first_name: 'John',
+        group_number: 'GRP001',
+        last_name: 'Smith',
+        member_id: '123456789',
       },
-      version: 'version',
+      version: 'v2',
       dependent: {
-        dob: '2019-12-27',
+        dob: 'dob',
         first_name: 'first_name',
         group_number: 'group_number',
         last_name: 'last_name',

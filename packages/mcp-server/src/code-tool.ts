@@ -44,6 +44,8 @@ async function run(client) {
     dob: '03/22/2015',
   },
   });
+
+  console.log(response.data);
 }
 \`\`\`
 

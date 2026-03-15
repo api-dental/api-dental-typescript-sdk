@@ -26,16 +26,86 @@ export class ClearCoverage extends APIResource {
    * });
    * ```
    */
-  request(body: ClearCoverageRequestParams, options?: RequestOptions): APIPromise<unknown> {
+  request(
+    body: ClearCoverageRequestParams,
+    options?: RequestOptions,
+  ): APIPromise<ClearCoverageRequestResponse> {
     return this._client.post('/ClearCoverage', { body, ...options });
   }
 }
 
 /**
- * ClearCoverage response containing enriched eligibility data, detailed coverage
- * breakdowns, and standardized benefit information.
+ * ClearCoverage response wrapped in a WunderGraph data envelope. The actual data
+ * is under data.clearcoverage_post_enhanced_eligibility.
  */
-export type ClearCoverageRequestResponse = unknown;
+export interface ClearCoverageRequestResponse {
+  data?: ClearCoverageRequestResponse.Data;
+}
+
+export namespace ClearCoverageRequestResponse {
+  export interface Data {
+    /**
+     * Enhanced eligibility data with standardized benefit breakdowns. Contains
+     * benefits (with network tiers), coverages (13 categories with subcategories),
+     * rules (policy flags), limitation, service_history, and fees sections. Response
+     * size varies significantly by payer (10KB-550KB).
+     */
+    clearcoverage_post_enhanced_eligibility?: Data.ClearcoveragePostEnhancedEligibility;
+  }
+
+  export namespace Data {
+    /**
+     * Enhanced eligibility data with standardized benefit breakdowns. Contains
+     * benefits (with network tiers), coverages (13 categories with subcategories),
+     * rules (policy flags), limitation, service_history, and fees sections. Response
+     * size varies significantly by payer (10KB-550KB).
+     */
+    export interface ClearcoveragePostEnhancedEligibility {
+      /**
+       * Benefit entries with 0-3 network tiers (IN_NETWORK, OUT_OF_NETWORK, plus
+       * PPO/PREMIER for Delta Dental).
+       */
+      benefits?: Array<unknown>;
+
+      /**
+       * 13 fixed coverage categories (diagnostic, preventive, basic_restorative,
+       * major_restorative, endodontics, periodontics, oral_surgery, prosthodontics,
+       * orthodontics, implants, adjunctive, TMJ, misc), each containing variable
+       * subcategories with coinsurance and limitations.
+       */
+      coverages?: { [key: string]: unknown };
+
+      /**
+       * Individual and family deductible amounts by network tier.
+       */
+      deductible?: unknown;
+
+      /**
+       * Annual and lifetime maximum amounts by network tier.
+       */
+      maximums?: unknown;
+
+      payer?: unknown;
+
+      /**
+       * Plan identification and effective dates.
+       */
+      plan?: unknown;
+
+      provider?: unknown;
+
+      /**
+       * Policy-level flags including missing_tooth clause, seat/prep date rules, waiting
+       * periods, and COB (coordination of benefits) information.
+       */
+      rules?: unknown;
+
+      subscriber?: unknown;
+
+      [k: string]: unknown;
+    }
+  }
+}
 
 export interface ClearCoverageRequestParams {
   payer: ClearCoverageRequestParams.Payer;
@@ -44,7 +114,11 @@ export interface ClearCoverageRequestParams {
 
   subscriber: ClearCoverageRequestParams.Subscriber;
 
-  version: string;
+  /**
+   * API version. Use "v2" for the current version. Version "v1" is deprecated and
+   * returns a legacy response format.
+   */
+  version: 'v1' | 'v2';
 
   /**
    * Optional dependent information

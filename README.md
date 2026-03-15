@@ -54,6 +54,8 @@ const response = await client.eligibility.request({
     dob: '03/22/2015',
   },
 });
+
+console.log(response.data);
 ```
 
 ### Request & Response types
@@ -80,7 +82,7 @@ const params: APIDentalPro.EligibilityRequestParams = {
   },
   version: 'v2',
 };
-const response: unknown = await client.eligibility.request(params);
+const response: APIDentalPro.EligibilityRequestResponse = await client.eligibility.request(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -240,7 +242,7 @@ const { data: response, response: raw } = await client.eligibility
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(response);
+console.log(response.data);
 ```
 
 ### Logging

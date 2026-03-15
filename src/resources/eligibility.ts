@@ -26,16 +26,62 @@ export class Eligibility extends APIResource {
    * });
    * ```
    */
-  request(body: EligibilityRequestParams, options?: RequestOptions): APIPromise<unknown> {
+  request(body: EligibilityRequestParams, options?: RequestOptions): APIPromise<EligibilityRequestResponse> {
     return this._client.post('/Eligibility', { body, ...options });
   }
 }
 
 /**
- * Eligibility response containing coverage details, benefits, deductibles, and
- * payer information. Response structure varies by payer.
+ * Eligibility response wrapped in a WunderGraph data envelope. The actual
+ * eligibility data is under data.apidental_post_eligibility.
  */
-export type EligibilityRequestResponse = unknown;
+export interface EligibilityRequestResponse {
+  data?: EligibilityRequestResponse.Data;
+}
+
+export namespace EligibilityRequestResponse {
+  export interface Data {
+    /**
+     * Eligibility verification results. Contains patient, subscriber, payer, provider,
+     * plan, limitations, deductibles, maximums, coinsurance, active_coverage, and
+     * not_covered sections. Structure varies by payer.
+     */
+    apidental_post_eligibility?: Data.ApidentalPostEligibility;
+  }
+
+  export namespace Data {
+    /**
+     * Eligibility verification results. Contains patient, subscriber, payer, provider,
+     * plan, limitations, deductibles, maximums, coinsurance, active_coverage, and
+     * not_covered sections. Structure varies by payer.
+     */
+    export interface ApidentalPostEligibility {
+      active_coverage?: Array<unknown>;
+
+      coinsurance?: Array<unknown>;
+
+      deductible?: Array<unknown>;
+
+      limitations?: Array<unknown>;
+
+      maximums?: Array<unknown>;
+
+      not_covered?: Array<unknown>;
+
+      patient?: unknown;
+
+      payer?: unknown;
+
+      plan?: unknown;
+
+      provider?: unknown;
+
+      subscriber?: unknown;
+
+      [k: string]: unknown;
+    }
+  }
+}
 
 export interface EligibilityRequestParams {
   payer: EligibilityRequestParams.Payer;
@@ -45,9 +91,10 @@ export interface EligibilityRequestParams {
   subscriber: EligibilityRequestParams.Subscriber;
 
   /**
-   * API version. Use "v2".
+   * API version. Use "v2" for the current version. Version "v1" is deprecated and
+   * returns a legacy response format.
    */
-  version: string;
+  version: 'v1' | 'v2';
 
   /**
    * Optional dependent information for dependent eligibility checks

@@ -8,7 +8,7 @@ const client = new APIDentalPro({
 });
 
 describe('resource payer', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.payer.list();
     const rawResponse = await responsePromise.asResponse();

@@ -8,6 +8,15 @@ The REST API documentation can be found on [api.dental](https://api.dental/docs)
 
 It is generated with [Stainless](https://www.stainless.com/).
 
+## MCP Server
+
+Use the API Dental Pro MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
+
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=api-dental-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImFwaS1kZW50YWwtbWNwIl0sImVudiI6eyJBUElfREVOVEFMX0FQSV9LRVkiOiJNeSBBUEkgS2V5IiwiQVBJX0RFTlRBTF9QUk9fU0RLX1NPVVJDRSI6Ik15IFNESyBTb3VyY2UiLCJBUElfREVOVEFMX1BST19TREtfTEFORyI6Ik15IFNESyBMYW5nIn19)
+[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22api-dental-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22api-dental-mcp%22%5D%2C%22env%22%3A%7B%22API_DENTAL_API_KEY%22%3A%22My%20API%20Key%22%2C%22API_DENTAL_PRO_SDK_SOURCE%22%3A%22My%20SDK%20Source%22%2C%22API_DENTAL_PRO_SDK_LANG%22%3A%22My%20SDK%20Lang%22%7D%7D)
+
+> Note: You may need to set environment variables in your MCP client.
+
 ## Installation
 
 ```sh
@@ -30,19 +39,19 @@ const response = await client.eligibility.request({
   payer: { id: '12345' },
   provider: { npi: '1234567890', tax_id: '123456789' },
   subscriber: {
-    dob: '2019-12-27',
     first_name: 'Jane',
-    group_number: '22000-00000',
     last_name: 'Doe',
     member_id: '118885555000',
+    group_number: '22000-00000',
+    dob: '01/15/1990',
   },
   version: 'v2',
   dependent: {
-    dob: '2019-12-27',
     first_name: 'John',
-    group_number: '20000-10001',
     last_name: 'Doe',
     member_id: '118885555001',
+    group_number: '20000-10001',
+    dob: '03/22/2015',
   },
 });
 ```
@@ -63,11 +72,11 @@ const params: APIDentalPro.EligibilityRequestParams = {
   payer: { id: '12345' },
   provider: { npi: '1234567890', tax_id: '123456789' },
   subscriber: {
-    dob: '2019-12-27',
     first_name: 'Jane',
-    group_number: '20000-10000',
     last_name: 'Doe',
     member_id: '118885555000',
+    group_number: '20000-10000',
+    dob: '01/15/1990',
   },
   version: 'v2',
 };
@@ -89,11 +98,11 @@ const response = await client.eligibility
     payer: { id: '12345' },
     provider: { npi: '1234567890', tax_id: '123456789' },
     subscriber: {
-      dob: '2019-12-27',
       first_name: 'Jane',
-      group_number: '20000-10000',
       last_name: 'Doe',
       member_id: '118885555000',
+      group_number: '20000-10000',
+      dob: '01/15/1990',
     },
     version: 'v2',
   })
@@ -137,7 +146,18 @@ const client = new APIDentalPro({
 });
 
 // Or, configure per-request:
-await client.eligibility.request({ payer: { id: '12345' }, provider: { npi: '1234567890', tax_id: '123456789' }, subscriber: { dob: '2019-12-27', first_name: 'Jane', group_number: '20000-10000', last_name: 'Doe', member_id: '118885555000' }, version: 'v2' }, {
+await client.eligibility.request({
+  payer: { id: '12345' },
+  provider: { npi: '1234567890', tax_id: '123456789' },
+  subscriber: {
+  first_name: 'Jane',
+  last_name: 'Doe',
+  member_id: '118885555000',
+  group_number: '20000-10000',
+  dob: '01/15/1990',
+},
+  version: 'v2',
+}, {
   maxRetries: 5,
 });
 ```
@@ -154,7 +174,18 @@ const client = new APIDentalPro({
 });
 
 // Override per-request:
-await client.eligibility.request({ payer: { id: '12345' }, provider: { npi: '1234567890', tax_id: '123456789' }, subscriber: { dob: '2019-12-27', first_name: 'Jane', group_number: '20000-10000', last_name: 'Doe', member_id: '118885555000' }, version: 'v2' }, {
+await client.eligibility.request({
+  payer: { id: '12345' },
+  provider: { npi: '1234567890', tax_id: '123456789' },
+  subscriber: {
+  first_name: 'Jane',
+  last_name: 'Doe',
+  member_id: '118885555000',
+  group_number: '20000-10000',
+  dob: '01/15/1990',
+},
+  version: 'v2',
+}, {
   timeout: 5 * 1000,
 });
 ```
@@ -182,11 +213,11 @@ const response = await client.eligibility
     payer: { id: '12345' },
     provider: { npi: '1234567890', tax_id: '123456789' },
     subscriber: {
-      dob: '2019-12-27',
       first_name: 'Jane',
-      group_number: '20000-10000',
       last_name: 'Doe',
       member_id: '118885555000',
+      group_number: '20000-10000',
+      dob: '01/15/1990',
     },
     version: 'v2',
   })
@@ -199,11 +230,11 @@ const { data: response, response: raw } = await client.eligibility
     payer: { id: '12345' },
     provider: { npi: '1234567890', tax_id: '123456789' },
     subscriber: {
-      dob: '2019-12-27',
       first_name: 'Jane',
-      group_number: '20000-10000',
       last_name: 'Doe',
       member_id: '118885555000',
+      group_number: '20000-10000',
+      dob: '01/15/1990',
     },
     version: 'v2',
   })

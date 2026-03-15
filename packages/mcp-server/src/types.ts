@@ -42,10 +42,19 @@ export type ToolCallResult = {
   isError?: boolean;
 };
 
-export type HandlerFunction = (
-  client: APIDentalPro,
-  args: Record<string, unknown> | undefined,
-) => Promise<ToolCallResult>;
+export type McpRequestContext = {
+  client: APIDentalPro;
+  stainlessApiKey?: string | undefined;
+  upstreamClientEnvs?: Record<string, string> | undefined;
+};
+
+export type HandlerFunction = ({
+  reqContext,
+  args,
+}: {
+  reqContext: McpRequestContext;
+  args: Record<string, unknown> | undefined;
+}) => Promise<ToolCallResult>;
 
 export function asTextContentResult(result: unknown): ToolCallResult {
   return {
@@ -108,7 +117,7 @@ export type Metadata = {
   operationId?: string;
 };
 
-export type Endpoint = {
+export type McpTool = {
   metadata: Metadata;
   tool: Tool;
   handler: HandlerFunction;

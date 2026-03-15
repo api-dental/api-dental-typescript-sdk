@@ -6,7 +6,7 @@ Types:
 
 Methods:
 
-- <code title="post /Eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">request</a>({ ...params }) -> unknown</code>
+- <code title="post /Eligibility">client.eligibility.<a href="./src/resources/eligibility.ts">request</a>({ ...params }) -> EligibilityRequestResponse</code>
 
 # ClearCoverage
 
@@ -16,7 +16,7 @@ Types:
 
 Methods:
 
-- <code title="post /ClearCoverage">client.clearCoverage.<a href="./src/resources/clear-coverage.ts">request</a>({ ...params }) -> unknown</code>
+- <code title="post /ClearCoverage">client.clearCoverage.<a href="./src/resources/clear-coverage.ts">request</a>({ ...params }) -> ClearCoverageRequestResponse</code>
 
 # Payer
 

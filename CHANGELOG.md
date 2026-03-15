@@ -1,5 +1,53 @@
 # Changelog
 
+## 1.5.0 (2026-03-15)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **api:** manual updates ([a86ffb1](https://github.com/api-dental/api-dental-typescript-sdk/commit/a86ffb17567a3bed7a72fab41d20dd24794e7e52))
+* **mcp:** add detail field to docs search tool ([24fa692](https://github.com/api-dental/api-dental-typescript-sdk/commit/24fa692febb76159af626f4096d2fc39f8b30958))
+* **mcp:** add typescript check to code execution tool ([0218f1d](https://github.com/api-dental/api-dental-typescript-sdk/commit/0218f1d73a684c60c50cd4e67548a5840c39211e))
+* **mcp:** enable optional code execution tool on http mcp servers ([61c77bd](https://github.com/api-dental/api-dental-typescript-sdk/commit/61c77bdbf3726ee1f866675372eaae38a71f8331))
+* **mcp:** handle code mode calls in the Stainless API ([88bec40](https://github.com/api-dental/api-dental-typescript-sdk/commit/88bec40a97423a8f2c4cd8633dd853a14b34d497))
+* **mcp:** return logs on code tool errors ([ec68e91](https://github.com/api-dental/api-dental-typescript-sdk/commit/ec68e912e032a8dca56a529d252791e3b69def2d))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([316bd6c](https://github.com/api-dental/api-dental-typescript-sdk/commit/316bd6ca99126d3c2c972c48975531ff103f8149))
+* **mcpb:** pin @anthropic-ai/mcpb version ([aaa0545](https://github.com/api-dental/api-dental-typescript-sdk/commit/aaa05451e82ea701271fdf2d2ea9d67def9653ef))
+* **mcp:** correct code tool API endpoint ([695a44c](https://github.com/api-dental/api-dental-typescript-sdk/commit/695a44c264b4c93ca3792f7d7e88ebea8aa38e44))
+* **mcp:** return correct lines on typescript errors ([da25b0c](https://github.com/api-dental/api-dental-typescript-sdk/commit/da25b0caa83e2e2838817dde0cf7bddc4963fd76))
+* **mcp:** return tool execution error on api error ([9def099](https://github.com/api-dental/api-dental-typescript-sdk/commit/9def099f475e1234828fc6f2c772497b0fa24682))
+* **mcp:** return tool execution error on jq failure ([c00fa7d](https://github.com/api-dental/api-dental-typescript-sdk/commit/c00fa7d44d024f8e4c9ae7d3cc372868086c56e4))
+
+
+### Chores
+
+* **client:** fix logger property type ([554af29](https://github.com/api-dental/api-dental-typescript-sdk/commit/554af297f49404ab00010173a90acb96bfb49d12))
+* **internal:** codegen related update ([c3705dd](https://github.com/api-dental/api-dental-typescript-sdk/commit/c3705ddb35b4a2a83ebdbe16132cd248d16c7c10))
+* **internal:** codegen related update ([6c308ae](https://github.com/api-dental/api-dental-typescript-sdk/commit/6c308aedf4997af971d02b8bb6ed97df61e3d2d1))
+* **internal:** codegen related update ([533ef6e](https://github.com/api-dental/api-dental-typescript-sdk/commit/533ef6e54379aac0b10efe9e088dee6a0533157c))
+* **internal:** codegen related update ([a3a35da](https://github.com/api-dental/api-dental-typescript-sdk/commit/a3a35dadadd731fc758a2a4f39af15aac830d0c0))
+* **internal:** grammar fix (it's -&gt; its) ([d25058b](https://github.com/api-dental/api-dental-typescript-sdk/commit/d25058bb3880d3efca573319e4ee73cc75b5daa6))
+* **internal:** upgrade eslint ([9487701](https://github.com/api-dental/api-dental-typescript-sdk/commit/94877017cc885131ddbbf559d4c20a36ef3de1f0))
+* mcp code tool explicit error message when missing a run function ([666c6f5](https://github.com/api-dental/api-dental-typescript-sdk/commit/666c6f578aebf60ec52cefe9de9aed3c68dd4535))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([05cb63c](https://github.com/api-dental/api-dental-typescript-sdk/commit/05cb63c613aa6dc7a5e840807d0ae812333d08d1))
+* **mcp:** add line numbers to code tool errors ([799df9a](https://github.com/api-dental/api-dental-typescript-sdk/commit/799df9a077c64ddc4f037fc33ad5145cda64edec))
+* **mcp:** clarify http auth error ([b7a81a3](https://github.com/api-dental/api-dental-typescript-sdk/commit/b7a81a37479bb9f2f8b7bdfe5a000b39c3f834e9))
+* **mcp:** update lockfile ([3d1ca15](https://github.com/api-dental/api-dental-typescript-sdk/commit/3d1ca158482062365658ac1a45ceaf77bd22febb))
+* **mcp:** upgrade jq-web ([91a1002](https://github.com/api-dental/api-dental-typescript-sdk/commit/91a10029dfe74bcc6faf67295f5e8a1d9cb895ec))
+* use latest @modelcontextprotocol/sdk ([794ee80](https://github.com/api-dental/api-dental-typescript-sdk/commit/794ee80487aa41f23ce500fdf098a5d6ceca98d7))
+* use structured error when code execution tool errors ([d1c32b7](https://github.com/api-dental/api-dental-typescript-sdk/commit/d1c32b70060fd49cb1df1c96bf810399a56fb50c))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([2658967](https://github.com/api-dental/api-dental-typescript-sdk/commit/2658967993a3c41e59e648f1e9d84f55cc6069b1))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([ffdd04a](https://github.com/api-dental/api-dental-typescript-sdk/commit/ffdd04a5efe24a0d843514d646623a3bdf567953))
+
 ## 1.4.0 (2025-10-09)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.3.0...v1.4.0)

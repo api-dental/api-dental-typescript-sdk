@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0 (2026-03-15)
+
+Full Changelog: [v1.5.0...v1.6.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.5.0...v1.6.0)
+
+### Features
+
+* **api:** manual updates ([423a2ff](https://github.com/api-dental/api-dental-typescript-sdk/commit/423a2ffdf69ff2707e5b7ea70a805fe8bfb84942))
+
 ## 1.5.0 (2026-03-15)
 
 Full Changelog: [v1.4.0...v1.5.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.4.0...v1.5.0)

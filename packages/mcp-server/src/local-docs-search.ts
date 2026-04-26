@@ -71,6 +71,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## request\n\n`client.eligibility.request(payer: { id: string; }, provider: { npi: string; tax_id: string; }, subscriber: { dob: string; first_name: string; group_number: string; last_name: string; member_id: string; }, version: 'v1' | 'v2', dependent?: { dob?: string; first_name?: string; group_number?: string; last_name?: string; member_id?: string; }): { data?: object; }`\n\n**post** `/Eligibility`\n\nSubmit a real-time eligibility and benefits verification request for a dental insurance subscriber. Returns coverage details, deductibles, maximums, and benefit information from the payer.\n\n### Parameters\n\n- `payer: { id: string; }`\n  - `id: string`\n    Payer ID from the Payer List endpoint\n\n- `provider: { npi: string; tax_id: string; }`\n  - `npi: string`\n    Provider's National Provider Identifier (10 digits)\n  - `tax_id: string`\n    Provider's Tax Identification Number (9 digits)\n\n- `subscriber: { dob: string; first_name: string; group_number: string; last_name: string; member_id: string; }`\n  - `dob: string`\n    Date of birth in MM/DD/YYYY format\n  - `first_name: string`\n    Subscriber's first name\n  - `group_number: string`\n    Insurance group number\n  - `last_name: string`\n    Subscriber's last name\n  - `member_id: string`\n    Subscriber's insurance member ID\n\n- `version: 'v1' | 'v2'`\n  API version. Use \"v2\" for the current version. Version \"v1\" is deprecated and returns a legacy response format.\n\n- `dependent?: { dob?: string; first_name?: string; group_number?: string; last_name?: string; member_id?: string; }`\n  Optional dependent information for dependent eligibility checks\n  - `dob?: string`\n    MM/DD/YYYY format\n  - `first_name?: string`\n  - `group_number?: string`\n  - `last_name?: string`\n  - `member_id?: string`\n\n### Returns\n\n- `{ data?: { apidental_post_eligibility?: { active_coverage?: object[]; coinsurance?: object[]; deductible?: object[]; limitations?: object[]; maximums?: object[]; not_covered?: object[]; patient?: object; payer?: object; plan?: object; provider?: object; subscriber?: object; }; }; }`\n  Eligibility response wrapped in a WunderGraph data envelope. The actual eligibility data is under data.apidental_post_eligibility.\n\n  - `data?: { apidental_post_eligibility?: { active_coverage?: object[]; coinsurance?: object[]; deductible?: object[]; limitations?: object[]; maximums?: object[]; not_covered?: object[]; patient?: object; payer?: object; plan?: object; provider?: object; subscriber?: object; }; }`\n\n### Example\n\n```typescript\nimport APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro();\n\nconst response = await client.eligibility.request({\n  payer: { id: '52133' },\n  provider: { npi: '1447364856', tax_id: '270872579' },\n  subscriber: {\n  dob: '01/15/1990',\n  first_name: 'John',\n  group_number: 'GRP001',\n  last_name: 'Smith',\n  member_id: '123456789',\n},\n  version: 'v2',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
+      typescript: {
+        method: 'client.eligibility.request',
+        example:
+          "import APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro({\n  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.eligibility.request({\n  payer: { id: '52133' },\n  provider: { npi: '1447364856', tax_id: '270872579' },\n  subscriber: {\n    first_name: 'John',\n    last_name: 'Smith',\n    member_id: '123456789',\n    dob: '01/15/1990',\n    group_number: 'GRP001',\n  },\n  version: 'v2',\n});\n\nconsole.log(response.data);",
+      },
       csharp: {
         method: 'Eligibility.Request',
         example:
@@ -79,11 +84,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://wg.api.dental/rest/Eligibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-Token-API: $API_DENTAL_API_KEY" \\\n    -d \'{\n          "payer": {\n            "id": "52133"\n          },\n          "provider": {\n            "npi": "1447364856",\n            "tax_id": "270872579"\n          },\n          "subscriber": {\n            "dob": "01/15/1990",\n            "first_name": "John",\n            "group_number": "GRP001",\n            "last_name": "Smith",\n            "member_id": "123456789"\n          },\n          "version": "v2"\n        }\'',
-      },
-      typescript: {
-        method: 'client.eligibility.request',
-        example:
-          "import APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro({\n  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.eligibility.request({\n  payer: { id: '52133' },\n  provider: { npi: '1447364856', tax_id: '270872579' },\n  subscriber: {\n    first_name: 'John',\n    last_name: 'Smith',\n    member_id: '123456789',\n    dob: '01/15/1990',\n    group_number: 'GRP001',\n  },\n  version: 'v2',\n});\n\nconsole.log(response.data);",
       },
     },
   },
@@ -109,6 +109,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## request\n\n`client.clearCoverage.request(payer: { id: string; }, provider: { npi: string; tax_id: string; }, subscriber: { dob: string; first_name: string; group_number: string; last_name: string; member_id: string; }, version: 'v1' | 'v2', dependent?: { dob?: string; first_name?: string; group_number?: string; last_name?: string; member_id?: string; }, location_id?: string): { data?: object; }`\n\n**post** `/ClearCoverage`\n\nSubmit an enhanced eligibility and benefits verification request via Vyne ClearCoverage. Returns enriched, standardized, and normalized data relevant for dental use cases with deep benefit insights across supported payers.\n\n### Parameters\n\n- `payer: { id: string; }`\n  - `id: string`\n    ClearCoverage payer ID (see supported carriers list)\n\n- `provider: { npi: string; tax_id: string; }`\n  - `npi: string`\n    Provider's National Provider Identifier (10 digits)\n  - `tax_id: string`\n    Provider's Tax Identification Number (9 digits)\n\n- `subscriber: { dob: string; first_name: string; group_number: string; last_name: string; member_id: string; }`\n  - `dob: string`\n    MM/DD/YYYY format\n  - `first_name: string`\n  - `group_number: string`\n  - `last_name: string`\n  - `member_id: string`\n\n- `version: 'v1' | 'v2'`\n  API version. Use \"v2\" for the current version. Version \"v1\" is deprecated and returns a legacy response format.\n\n- `dependent?: { dob?: string; first_name?: string; group_number?: string; last_name?: string; member_id?: string; }`\n  Optional dependent information\n  - `dob?: string`\n  - `first_name?: string`\n  - `group_number?: string`\n  - `last_name?: string`\n  - `member_id?: string`\n\n- `location_id?: string`\n  Optional location identifier\n\n### Returns\n\n- `{ data?: { clearcoverage_post_enhanced_eligibility?: { benefits?: object[]; coverages?: object; deductible?: object; maximums?: object; payer?: object; plan?: object; provider?: object; rules?: object; subscriber?: object; }; }; }`\n  ClearCoverage response wrapped in a WunderGraph data envelope. The actual data is under data.clearcoverage_post_enhanced_eligibility.\n\n  - `data?: { clearcoverage_post_enhanced_eligibility?: { benefits?: object[]; coverages?: object; deductible?: object; maximums?: object; payer?: object; plan?: object; provider?: object; rules?: object; subscriber?: object; }; }`\n\n### Example\n\n```typescript\nimport APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro();\n\nconst response = await client.clearCoverage.request({\n  payer: { id: '52133' },\n  provider: { npi: '1447364856', tax_id: '270872579' },\n  subscriber: {\n  dob: '01/15/1990',\n  first_name: 'John',\n  group_number: 'GRP001',\n  last_name: 'Smith',\n  member_id: '123456789',\n},\n  version: 'v2',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
+      typescript: {
+        method: 'client.clearCoverage.request',
+        example:
+          "import APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro({\n  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.clearCoverage.request({\n  payer: { id: '52133' },\n  provider: { npi: '1447364856', tax_id: '270872579' },\n  subscriber: {\n    first_name: 'John',\n    last_name: 'Smith',\n    member_id: '123456789',\n    dob: '01/15/1990',\n    group_number: 'GRP001',\n  },\n  version: 'v2',\n});\n\nconsole.log(response.data);",
+      },
       csharp: {
         method: 'ClearCoverage.Request',
         example:
@@ -117,11 +122,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://wg.api.dental/rest/ClearCoverage \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-Token-API: $API_DENTAL_API_KEY" \\\n    -d \'{\n          "payer": {\n            "id": "52133"\n          },\n          "provider": {\n            "npi": "1447364856",\n            "tax_id": "270872579"\n          },\n          "subscriber": {\n            "dob": "01/15/1990",\n            "first_name": "John",\n            "group_number": "GRP001",\n            "last_name": "Smith",\n            "member_id": "123456789"\n          },\n          "version": "v2"\n        }\'',
-      },
-      typescript: {
-        method: 'client.clearCoverage.request',
-        example:
-          "import APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro({\n  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.clearCoverage.request({\n  payer: { id: '52133' },\n  provider: { npi: '1447364856', tax_id: '270872579' },\n  subscriber: {\n    first_name: 'John',\n    last_name: 'Smith',\n    member_id: '123456789',\n    dob: '01/15/1990',\n    group_number: 'GRP001',\n  },\n  version: 'v2',\n});\n\nconsole.log(response.data);",
       },
     },
   },
@@ -139,6 +139,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.payer.list(): { data?: object; }`\n\n**get** `/Payer`\n\nRetrieve the full list of supported dental insurance payers with their IDs, names, features, and status. No sensitive data is required. Use payer IDs from this list when making Eligibility or ClearCoverage requests.\n\n### Returns\n\n- `{ data?: { apidental_payer_list?: { id?: string; alt_payer_ids?: string[]; features?: string[]; name?: string; onederfulPayerId?: string; status?: 'active' | 'inactive'; }[]; }; }`\n\n  - `data?: { apidental_payer_list?: { id?: string; alt_payer_ids?: string[]; features?: string[]; name?: string; onederfulPayerId?: string; status?: 'active' | 'inactive'; }[]; }`\n\n### Example\n\n```typescript\nimport APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro();\n\nconst payers = await client.payer.list();\n\nconsole.log(payers);\n```",
     perLanguage: {
+      typescript: {
+        method: 'client.payer.list',
+        example:
+          "import APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro({\n  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted\n});\n\nconst payers = await client.payer.list();\n\nconsole.log(payers.data);",
+      },
       csharp: {
         method: 'Payer.List',
         example:
@@ -146,11 +151,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example: 'curl https://wg.api.dental/rest/Payer \\\n    -H "X-Token-API: $API_DENTAL_API_KEY"',
-      },
-      typescript: {
-        method: 'client.payer.list',
-        example:
-          "import APIDentalPro from 'api-dental';\n\nconst client = new APIDentalPro({\n  apiKey: process.env['API_DENTAL_API_KEY'], // This is the default and can be omitted\n});\n\nconst payers = await client.payer.list();\n\nconsole.log(payers.data);",
       },
     },
   },

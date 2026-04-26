@@ -2,26 +2,23 @@
 
 import APIDentalPro from 'api-dental';
 
-const client = new APIDentalPro({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new APIDentalPro({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource clearCoverage', () => {
   // Mock server tests are disabled
   test.skip('request: only required params', async () => {
     const responsePromise = client.clearCoverage.request({
-      payer: { id: '52133' },
-      provider: { npi: '1447364856', tax_id: '270872579' },
-      subscriber: {
-        dob: '01/15/1990',
-        first_name: 'John',
-        group_number: 'GRP001',
-        last_name: 'Smith',
-        member_id: '123456789',
-      },
-      version: 'v2',
-    });
+    payer: { id: '52133' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+    dob: '01/15/1990',
+    first_name: 'John',
+    group_number: 'GRP001',
+    last_name: 'Smith',
+    member_id: '123456789',
+  },
+    version: 'v2',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -34,24 +31,24 @@ describe('resource clearCoverage', () => {
   // Mock server tests are disabled
   test.skip('request: required and optional params', async () => {
     const response = await client.clearCoverage.request({
-      payer: { id: '52133' },
-      provider: { npi: '1447364856', tax_id: '270872579' },
-      subscriber: {
-        dob: '01/15/1990',
-        first_name: 'John',
-        group_number: 'GRP001',
-        last_name: 'Smith',
-        member_id: '123456789',
-      },
-      version: 'v2',
-      dependent: {
-        dob: 'dob',
-        first_name: 'first_name',
-        group_number: 'group_number',
-        last_name: 'last_name',
-        member_id: 'member_id',
-      },
-      location_id: 'location_id',
-    });
+    payer: { id: '52133' },
+    provider: { npi: '1447364856', tax_id: '270872579' },
+    subscriber: {
+    dob: '01/15/1990',
+    first_name: 'John',
+    group_number: 'GRP001',
+    last_name: 'Smith',
+    member_id: '123456789',
+  },
+    version: 'v2',
+    dependent: {
+    dob: 'dob',
+    first_name: 'first_name',
+    group_number: 'group_number',
+    last_name: 'last_name',
+    member_id: 'member_id',
+  },
+    location_id: 'location_id',
+  });
   });
 });

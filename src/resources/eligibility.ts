@@ -78,7 +78,7 @@ export namespace EligibilityRequestResponse {
 
       subscriber?: unknown;
 
-      [k: string]: unknown;
+    [k: string]: unknown
     }
   }
 }
@@ -171,6 +171,6 @@ export namespace EligibilityRequestParams {
 export declare namespace Eligibility {
   export {
     type EligibilityRequestResponse as EligibilityRequestResponse,
-    type EligibilityRequestParams as EligibilityRequestParams,
+    type EligibilityRequestParams as EligibilityRequestParams
   };
 }

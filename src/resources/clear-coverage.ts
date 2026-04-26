@@ -26,10 +26,7 @@ export class ClearCoverage extends APIResource {
    * });
    * ```
    */
-  request(
-    body: ClearCoverageRequestParams,
-    options?: RequestOptions,
-  ): APIPromise<ClearCoverageRequestResponse> {
+  request(body: ClearCoverageRequestParams, options?: RequestOptions): APIPromise<ClearCoverageRequestResponse> {
     return this._client.post('/ClearCoverage', { body, ...options });
   }
 }
@@ -102,7 +99,7 @@ export namespace ClearCoverageRequestResponse {
 
       subscriber?: unknown;
 
-      [k: string]: unknown;
+    [k: string]: unknown
     }
   }
 }
@@ -185,6 +182,6 @@ export namespace ClearCoverageRequestParams {
 export declare namespace ClearCoverage {
   export {
     type ClearCoverageRequestResponse as ClearCoverageRequestResponse,
-    type ClearCoverageRequestParams as ClearCoverageRequestParams,
+    type ClearCoverageRequestParams as ClearCoverageRequestParams
   };
 }

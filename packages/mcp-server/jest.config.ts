@@ -10,9 +10,7 @@ const config: JestConfigWithTsJest = {
     '^api-dental-mcp$': '<rootDir>/src/index.ts',
     '^api-dental-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: [
-    '<rootDir>/dist/',
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],
 };
 

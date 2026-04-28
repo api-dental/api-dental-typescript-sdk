@@ -60,7 +60,5 @@ export namespace PayerListResponse {
 }
 
 export declare namespace Payer {
-  export {
-    type PayerListResponse as PayerListResponse
-  };
+  export { type PayerListResponse as PayerListResponse };
 }

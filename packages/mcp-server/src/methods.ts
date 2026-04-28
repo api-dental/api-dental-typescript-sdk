@@ -7,24 +7,28 @@ export type SdkMethod = {
   fullyQualifiedName: string;
   httpMethod?: 'get' | 'post' | 'put' | 'patch' | 'delete' | 'query';
   httpPath?: string;
-}
+};
 
-export const sdkMethods: SdkMethod[] = [{
-  clientCallName: 'client.eligibility.request',
-  fullyQualifiedName: 'eligibility.request',
-  httpMethod: 'post',
-  httpPath: '/Eligibility',
-},{
-  clientCallName: 'client.clearCoverage.request',
-  fullyQualifiedName: 'clearCoverage.request',
-  httpMethod: 'post',
-  httpPath: '/ClearCoverage',
-},{
-  clientCallName: 'client.payer.list',
-  fullyQualifiedName: 'payer.list',
-  httpMethod: 'get',
-  httpPath: '/Payer',
-}];
+export const sdkMethods: SdkMethod[] = [
+  {
+    clientCallName: 'client.eligibility.request',
+    fullyQualifiedName: 'eligibility.request',
+    httpMethod: 'post',
+    httpPath: '/Eligibility',
+  },
+  {
+    clientCallName: 'client.clearCoverage.request',
+    fullyQualifiedName: 'clearCoverage.request',
+    httpMethod: 'post',
+    httpPath: '/ClearCoverage',
+  },
+  {
+    clientCallName: 'client.payer.list',
+    fullyQualifiedName: 'payer.list',
+    httpMethod: 'get',
+    httpPath: '/Payer',
+  },
+];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
   if (!options) {
@@ -39,9 +43,9 @@ function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[]
 
     if (options.codeAllowHttpGets) {
       // Add all methods that map to an HTTP GET
-      sdkMethods.filter((method) => method.httpMethod === 'get').forEach(
-        (method) => allowedMethodsSet.add(method)
-      );
+      sdkMethods
+        .filter((method) => method.httpMethod === 'get')
+        .forEach((method) => allowedMethodsSet.add(method));
     }
 
     if (options.codeAllowedMethods) {
@@ -50,13 +54,15 @@ function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[]
         try {
           return new RegExp(pattern);
         } catch (e) {
-          throw new Error(`Invalid regex pattern for allowed method: "${pattern}": ${e instanceof Error ? e.message : e}`);
+          throw new Error(
+            `Invalid regex pattern for allowed method: "${pattern}": ${e instanceof Error ? e.message : e}`,
+          );
         }
       });
 
-      sdkMethods.filter((method) =>
-          allowedRegexps.some((regexp) => regexp.test(method.fullyQualifiedName))
-        ).forEach((method) => allowedMethodsSet.add(method));
+      sdkMethods
+        .filter((method) => allowedRegexps.some((regexp) => regexp.test(method.fullyQualifiedName)))
+        .forEach((method) => allowedMethodsSet.add(method));
     }
 
     allowedMethods = Array.from(allowedMethodsSet);
@@ -71,12 +77,14 @@ function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[]
       try {
         return new RegExp(pattern);
       } catch (e) {
-        throw new Error(`Invalid regex pattern for blocked method: "${pattern}": ${e instanceof Error ? e.message : e}`);
+        throw new Error(
+          `Invalid regex pattern for blocked method: "${pattern}": ${e instanceof Error ? e.message : e}`,
+        );
       }
     });
 
-    allowedMethods = allowedMethods.filter((method) =>
-      !blockedRegexps.some((regexp) => regexp.test(method.fullyQualifiedName))
+    allowedMethods = allowedMethods.filter(
+      (method) => !blockedRegexps.some((regexp) => regexp.test(method.fullyQualifiedName)),
     );
   }
 

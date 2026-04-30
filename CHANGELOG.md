@@ -1,5 +1,46 @@
 # Changelog
 
+## 1.7.0 (2026-04-30)
+
+Full Changelog: [v1.6.0...v1.7.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.6.0...v1.7.0)
+
+### Features
+
+* support setting headers via env ([d5c13be](https://github.com/api-dental/api-dental-typescript-sdk/commit/d5c13beaee5c2196f70ad13e5c9b4510100c9ff7))
+
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([699d5aa](https://github.com/api-dental/api-dental-typescript-sdk/commit/699d5aad41ccbcb993f94fd0d45145b690b0a267))
+* **ci:** escape input path in publish-npm workflow ([3706e55](https://github.com/api-dental/api-dental-typescript-sdk/commit/3706e559031f0091c4c95fc89a1b13e5ec46ff88))
+* **ci:** skip lint on metadata-only changes ([31cf7c1](https://github.com/api-dental/api-dental-typescript-sdk/commit/31cf7c11ce64ed46d5da049c2be648a2b5373fbf))
+* **format:** run eslint and prettier separately ([35ef74f](https://github.com/api-dental/api-dental-typescript-sdk/commit/35ef74f727996ddb71613fd3460bacfd703735e5))
+* **formatter:** run prettier and eslint separately ([ab3e247](https://github.com/api-dental/api-dental-typescript-sdk/commit/ab3e247a02b0d4e2b25ab8a4c69d4f62e06a232d))
+* **internal:** codegen related update ([428def2](https://github.com/api-dental/api-dental-typescript-sdk/commit/428def21d0426ae020acb9eaa28ad01009e9e105))
+* **internal:** codegen related update ([4487463](https://github.com/api-dental/api-dental-typescript-sdk/commit/448746354886e8e38472562fd2dafe85d9c1ed11))
+* **internal:** codegen related update ([9503688](https://github.com/api-dental/api-dental-typescript-sdk/commit/95036880b2079eb659e20346fa41c014a73217e4))
+* **internal:** codegen related update ([32ff806](https://github.com/api-dental/api-dental-typescript-sdk/commit/32ff80624d8c87ea20574d6de9e28c642b60aa68))
+* **internal:** codegen related update ([9461925](https://github.com/api-dental/api-dental-typescript-sdk/commit/9461925ad873183aae740bf8ddb863487e5c308a))
+* **internal:** fix MCP docker image builds in yarn projects ([c21fbf2](https://github.com/api-dental/api-dental-typescript-sdk/commit/c21fbf200b83be499dbf339fea1cd24aeb3d5f07))
+* **internal:** fix MCP server import ordering ([76aae66](https://github.com/api-dental/api-dental-typescript-sdk/commit/76aae66e2dc57dafcb785aadac9934b7c2c0d632))
+* **internal:** fix MCP server TS errors that occur with required client options ([31eaf68](https://github.com/api-dental/api-dental-typescript-sdk/commit/31eaf68abdc95018b91154cb73ee4c3ccd0fc384))
+* **internal:** improve local docs search for MCP servers ([8a6aaf7](https://github.com/api-dental/api-dental-typescript-sdk/commit/8a6aaf7c2aaadba853117a5c2b7095ea21f6a00f))
+* **internal:** improve local docs search for MCP servers ([79f9ad0](https://github.com/api-dental/api-dental-typescript-sdk/commit/79f9ad08cb7f2e740559ea09cbd57e0a719186b2))
+* **internal:** more robust bootstrap script ([c7abec2](https://github.com/api-dental/api-dental-typescript-sdk/commit/c7abec20e8169e3ff19f08b1f510f0a3c16cba8a))
+* **internal:** show error causes in MCP servers when running in local mode ([17c4985](https://github.com/api-dental/api-dental-typescript-sdk/commit/17c49856b2d05096f8bae36c76bea061b73b2048))
+* **internal:** support custom-instructions-path flag in MCP servers ([875510e](https://github.com/api-dental/api-dental-typescript-sdk/commit/875510e5aea3efd8fce6db7dad99cfe0f82c85bd))
+* **internal:** support local docs search in MCP servers ([fb4a465](https://github.com/api-dental/api-dental-typescript-sdk/commit/fb4a465c5c57bae491031052ce41f6b92a7864ef))
+* **internal:** support type annotations when running MCP in local execution mode ([dff7adc](https://github.com/api-dental/api-dental-typescript-sdk/commit/dff7adc510ad238dbdb786ec446917334b6a1ef6))
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([1c60bfa](https://github.com/api-dental/api-dental-typescript-sdk/commit/1c60bfaf8c2e41aa3e474b1fcff3588c011eb920))
+* **internal:** tweak CI branches ([f574180](https://github.com/api-dental/api-dental-typescript-sdk/commit/f574180b5c3395421c5fc441e4b3afb3c6185b3f))
+* **internal:** update docs ordering ([72cb9ed](https://github.com/api-dental/api-dental-typescript-sdk/commit/72cb9ed53ed603fdcff7b0bcd5af9cf47b74aced))
+* **internal:** update gitignore ([4203cac](https://github.com/api-dental/api-dental-typescript-sdk/commit/4203cacf6ce72857a54130f93e61d366c1a24766))
+* **internal:** use link instead of file in MCP server package.json files ([6b69b7d](https://github.com/api-dental/api-dental-typescript-sdk/commit/6b69b7dc51c736939538bc7e20e2f5eac61ba0b6))
+* **mcp-server:** add support for session id, forward client info ([73c113d](https://github.com/api-dental/api-dental-typescript-sdk/commit/73c113dcd4f05b01dffd70d2cc4a7fa6f6f2049a))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([6d9a429](https://github.com/api-dental/api-dental-typescript-sdk/commit/6d9a42988e2a4581635d57b51b13f366926ded40))
+* **mcp-server:** log client info ([9963fb1](https://github.com/api-dental/api-dental-typescript-sdk/commit/9963fb1dd8f72455c7b235f160c6b1e08f67f22b))
+* restructure docs search code ([662412b](https://github.com/api-dental/api-dental-typescript-sdk/commit/662412bd309b5f6ea0d9b3da2c38840427a2ee4d))
+
 ## 1.6.0 (2026-03-15)
 
 Full Changelog: [v1.5.0...v1.6.0](https://github.com/api-dental/api-dental-typescript-sdk/compare/v1.5.0...v1.6.0)

@@ -18,7 +18,9 @@
     "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/index.js"],
+      "args": [
+        "${__dirname}/index.js"
+      ],
       "env": {
         "API_DENTAL_API_KEY": "${user_config.API_DENTAL_API_KEY}",
         "API_DENTAL_PRO_SDK_SOURCE": "${user_config.API_DENTAL_PRO_SDK_SOURCE}",
@@ -53,5 +55,7 @@
       "node": ">=18.0.0"
     }
   },
-  "keywords": ["api"]
+  "keywords": [
+    "api"
+  ]
 }
